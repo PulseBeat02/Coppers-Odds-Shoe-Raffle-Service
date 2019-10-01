@@ -26,7 +26,7 @@ This project uses a variety of dependencies. I will list all of them here:
 
 ## Note About the Github Repository
 
-Unfortuantly, I wasn't able to upload any song files onto github, so you won't be able to listen or choose music, as it will throw an IOException. If you want to play around with the code, I will upload a release that contains the .mp3 to check if it is working or not. Thanks.
+~~Unfortuantly, I wasn't able to upload any song files onto github, so you won't be able to listen or choose music, as it will throw an IOException. If you want to play around with the code, I will upload a release that contains the .mp3 to check if it is working or not. Thanks.~~ Edit: I was able to fix this by using git lfs here: https://git-lfs.github.com/ Now, you should be able to just download the repository. 
 
 ## Code Check
 
