@@ -1,0 +1,16 @@
+shoeName: Put Shoe Name Here
+shoePrice: Put Shoe Price Here
+brand: Put Shoe Brand Here
+typeOfShoes: Put "running", "walking", etc
+style: Put "cool", "girl", "boy"
+Color: Put Blue, Green, etc
+Sizes: Put Sizes
+Description: Put description of shoe here
+shipping: Shipping fee
+tax: Tax fee
+review: Put review 0 - 5 only include integer or integer with 0.5
+images: Put URL's for Images
+totalUsers: Updated by the program, do not touch.
+totalRaffles: Updated by the program, do not touch.
+clientID_Paypal: Client ID of Payment Receiver (User-name)
+clientSecret_Paypal: Password of Payment Receiver

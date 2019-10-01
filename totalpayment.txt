@@ -1,0 +1,41 @@
+{
+  "id": "PAYID-LUGVKPA4N187973XG698712U",
+  "intent": "authorize",
+  "payer": {
+    "payment_method": "paypal"
+  },
+  "transactions": [
+    {
+      "related_resources": [],
+      "amount": {
+        "currency": "USD",
+        "total": "1.20",
+        "details": {
+          "subtotal": "0.00",
+          "shipping": "0.00",
+          "tax": "0.00"
+        }
+      },
+      "description": "Shoe Raffle Ticket by Coppers Odds"
+    }
+  ],
+  "state": "created",
+  "create_time": "2019-06-21T22:07:55Z",
+  "links": [
+    {
+      "href": "https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUGVKPA4N187973XG698712U",
+      "rel": "self",
+      "method": "GET"
+    },
+    {
+      "href": "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd\u003d_express-checkout\u0026token\u003dEC-6SL80260CD7884239",
+      "rel": "approval_url",
+      "method": "REDIRECT"
+    },
+    {
+      "href": "https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUGVKPA4N187973XG698712U/execute",
+      "rel": "execute",
+      "method": "POST"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+	"shoes": [
+		{
+			"shoeName": "Nike React Presto",
+			"shoePrice": "120",
+			"brand": "Nike",
+			"typeOfShoes": "Running",
+			"style": "Men's Shoe",
+			"colors": [
+				"Blue",
+				"Green",
+				"Pink",
+				"Aqua",
+				"Yellow"
+			],
+			"sizes": [
+				"4",
+				"4.5",
+				"5"
+			],
+			"description": "Inspired by the early 2000s original, the Nike Presto React puts an exaggerated spin on an unconventional icon. Nike React foam delivers an expressive look with a lightweight, bouncy feel and a whole lot of personality.",
+			"shipping": "0",
+			"tax": "0",
+			"review": "5",
+			"totalRaffles": "0",
+			"imageURLs": [
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/zl49g5yxcibxdrsigngb/react-presto-mens-shoe-c4Rbf6.jpg",
+				"https://c.static-nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/jablbmfxdynwjvbgxzh1/nike-react-presto-brutal-honey-release-date.jpg",
+				"https://c.static-nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/jqzhsqisjcmbhozrwefr/nike-react-presto-brutal-honey-release-date.jpg",
+				"https://c.static-nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/tq0vsbg8yaa3ojia8fkx/nike-react-presto-brutal-honey-release-date.jpg"
+			],
+			"isSold": "false"
+		},
+		{
+			"shoeName": "Nike Air Zoom Pegasus 36 Trail",
+			"shoePrice": "130",
+			"brand": "Nike",
+			"typeOfShoes": "Running",
+			"style": "Women's Shoe",
+			"colors": [
+				"Yellow",
+				"Green",
+				"Aqua",
+				"Blue",
+				"Pink"
+			],
+			"sizes": [
+				"5",
+				"5.5",
+				"6"
+			],
+			"description": "An icon hits the paths less traveled in the Nike Air Zoom Pegasus 36 Trail. Perforated mesh upper offers breathable comfort, and double Zoom Air units cushion your stride. Outsole lugs optimize traction when running uphill.",
+			"shipping": "0",
+			"tax": "0",
+			"review": "0",
+			"totalRaffles": "0",
+			"imageURLs": [
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/d6yfuqvqp7l6os3oswll/air-zoom-pegasus-36-trail-womens-running-shoe-vF7D4W.jpg",
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/bnboer2ecdimuy693qw1/air-zoom-pegasus-36-trail-womens-running-shoe-vF7D4W.jpg",
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/znolfda4rdgvxcaz1dpl/air-zoom-pegasus-36-trail-womens-running-shoe-vF7D4W.jpg",
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/qutm7re9hzxoua97vund/air-zoom-pegasus-36-trail-womens-running-shoe-vF7D4W.jpg"
+			],
+			"isSold": "false"
+		},
+		{
+			"shoeName": "Nike Air Zoom Wildhorse 5",
+			"shoePrice": "110",
+			"brand": "Nike",
+			"typeOfShoes": "Running",
+			"style": "Men's Shoe",
+			"colors": [
+				"Pink",
+				"Aqua",
+				"Red",
+				"Black",
+				"Gray"
+			],
+			"sizes": [
+				"6",
+				"6.5",
+				"7",
+				"7.5",
+				"8"
+			],
+			"description": "Built specifically for trails, the Nike Air Zoom Wildhorse 5 keeps you galloping over rough terrain in breathable, multi-layer fabric. A rock plate helps shield your foot, while a Zoom Air heel unit cushions your stride on and off the path.",
+			"shipping": "0",
+			"tax": "0",
+			"review": "5",
+			"totalRaffles": "0",
+			"imageURLs": [
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/podtc6tfkrrrdtm9br5k/air-zoom-wildhorse-5-mens-running-shoe-lMslPS.jpg",
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/byjlvjfbmcvzq7vcieze/air-zoom-wildhorse-5-mens-running-shoe-lMslPS.jpg",
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/r9jwzrbf0uxuspoorq6f/air-zoom-wildhorse-5-mens-running-shoe-lMslPS.jpg",
+				"https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/cmbqldjtyaocthwmk8xl/air-zoom-wildhorse-5-mens-running-shoe-lMslPS.jpg"
+			],
+			"isSold": "false"
+		}
+	]
+}
