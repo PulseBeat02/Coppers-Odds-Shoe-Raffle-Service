@@ -1,0 +1,99 @@
+20:55:07.673 [main] INFO com.pulsebeat02.main.util.logging.Logger - C:\Users\Brandon Li\Desktop\ShoeRaffleServiceMac
+20:55:07.675 [main] INFO com.pulsebeat02.main.util.logging.Logger - C:\Users\Brandon Li
+com.pulsebeat02.main.util.JSON_reader.Shoes@4563e9ab
+Ran
+20:55:07.719 [main] INFO com.pulsebeat02.main.util.logging.Logger - Program Loading
+20:55:07.720 [main] DEBUG com.pulsebeat02.main.util.logging.Logger - This Will Be Printed On Debug
+20:55:07.720 [main] INFO com.pulsebeat02.main.util.logging.Logger - This Will Be Printed On Info
+20:55:07.720 [main] WARN com.pulsebeat02.main.util.logging.Logger - This Will Be Printed On Warn
+20:55:07.720 [main] ERROR com.pulsebeat02.main.util.logging.Logger - This Will Be Printed On Error
+20:55:07.720 [main] ERROR com.pulsebeat02.main.util.logging.Logger - This Will Be Printed On Fatal
+20:55:07.720 [main] INFO com.pulsebeat02.main.util.logging.Logger - Appending string: {}.
+20:55:07.720 [main] INFO com.pulsebeat02.main.util.logging.Logger - Logger has Loaded
+20:55:07.720 [main] INFO com.pulsebeat02.main.util.logging.Logger - Reading File
+20:55:07.721 [main] INFO com.pulsebeat02.main.util.logging.Logger - Reading File
+20:55:07.723 [main] INFO com.pulsebeat02.main.util.logging.Logger - Loading Accounts
+20:55:07.724 [main] INFO com.pulsebeat02.main.util.logging.Logger - Reading Line: 0
+20:55:07.724 [main] INFO com.pulsebeat02.main.util.logging.Logger - Getting Info
+20:55:08.183 [main] INFO com.pulsebeat02.main.util.logging.Logger - New Account Made
+20:55:08.183 [main] INFO com.pulsebeat02.main.util.logging.Logger - Created Account: 0
+20:55:08.183 [main] INFO com.pulsebeat02.main.util.logging.Logger - Loading Payments
+20:55:08.184 [main] INFO com.pulsebeat02.main.util.logging.Logger - Reading Line: 0
+20:55:08.184 [main] INFO com.pulsebeat02.main.util.logging.Logger - Getting Info
+20:55:08.186 [main] INFO com.pulsebeat02.main.util.logging.Logger - Getting Rid of Blank Lines
+20:55:08.186 [main] INFO com.pulsebeat02.main.util.logging.Logger - Loading Accounts
+20:55:08.187 [main] INFO com.pulsebeat02.main.util.logging.Logger - 0 blank lines found
+20:55:08.187 [main] INFO com.pulsebeat02.main.util.logging.Logger - Saving
+20:55:08.187 [main] INFO com.pulsebeat02.main.util.logging.Logger - Printing to File
+20:55:08.187 [main] INFO com.pulsebeat02.main.util.logging.Logger - Made New Account: PulseBeat_02,firstName,lastName,troller1,2019/09/28,brandonli2006ma@gmail.com,0,0,0 0 0,false,180731556900286,68efe69b-f7b6-451e-a7f6-fd1990e7ddcd,Type About Your Self,3
+20:55:08.194 [main] INFO com.pulsebeat02.main.util.logging.Logger - Reading File
+20:55:08.194 [main] INFO com.pulsebeat02.main.util.logging.Logger - Loading Accounts
+20:55:08.194 [main] INFO com.pulsebeat02.main.util.logging.Logger - Reading Line: 0
+20:55:08.195 [main] INFO com.pulsebeat02.main.util.logging.Logger - Getting Info
+20:55:08.301 [main] INFO com.pulsebeat02.main.util.logging.Logger - New Account Made
+20:55:08.302 [main] INFO com.pulsebeat02.main.util.logging.Logger - Created Account: 0
+20:55:08.303 [main] INFO com.pulsebeat02.main.util.logging.Logger - Created Payment: 0
+20:55:08.315 [main] INFO com.pulsebeat02.main.util.logging.Logger - Reading File
+20:55:08.315 [main] INFO com.pulsebeat02.main.util.logging.Logger - Loading Accounts
+20:55:08.315 [main] INFO com.pulsebeat02.main.util.logging.Logger - Reading Line: 0
+20:55:08.315 [main] INFO com.pulsebeat02.main.util.logging.Logger - Getting Info
+20:55:08.435 [main] INFO com.pulsebeat02.main.util.logging.Logger - New Account Made
+20:55:08.435 [main] INFO com.pulsebeat02.main.util.logging.Logger - Created Account: 0
+20:55:08.435 [main] INFO com.pulsebeat02.main.util.logging.Logger - Opening Login Panel
+20:55:08.453 [main] INFO com.pulsebeat02.main.util.logging.Logger - Window Loaded In
+20:55:08.640 [main] INFO com.pulsebeat02.main.util.logging.Logger - User Kept Login
+20:55:08.640 [main] INFO com.pulsebeat02.main.util.logging.Logger - Network Connection Stable
+20:55:08.640 [main] INFO com.pulsebeat02.main.util.logging.Logger - Running Network Test
+20:55:08.640 [main] INFO com.pulsebeat02.main.util.logging.Logger - Pinging Bing
+Connection Good
+20:55:14.913 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Reading Login File
+20:55:14.913 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Login Successful
+20:55:14.913 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Reading File
+20:55:14.914 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Loading Accounts
+20:55:14.914 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Reading Line: 0
+20:55:14.914 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Getting Info
+20:55:15.010 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - New Account Made
+20:55:15.011 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Created Account: 0
+20:55:15.011 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Logged In
+20:55:15.011 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Got Account: 68efe69b-f7b6-451e-a7f6-fd1990e7ddcd
+20:55:15.011 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Starting Main Window
+PrintWriter finished
+==========================================
+DIAGNOSTIC INFORMATION FOR COPPERS ODDS
+==========================================
+Account Information for Debugging:
+Account ID: 68efe69b-f7b6-451e-a7f6-fd1990e7ddcd
+Account Username: PulseBeat_02
+Account First Name: firstName
+Account Last Name: lastName
+Account Biography: Type About Your Self
+Account Email: brandonli2006ma@gmail.com
+Account Music: 3
+Account Password: troller1
+Account Tickets Bought: 0
+Account Shoes Won: 0
+Account Stay Logged In (T/F): 180731556900286
+==========================================
+20:55:16.671 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Opening Main Window
+20:55:16.856 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Replace Chance Of Winning with 0%
+Connection is Tested
+Window Loaded In
+20:55:17.104 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Closing Login Window
+Window Loaded In
+
+Sending 'GET' request to URL : https://ipinfo.io/66.30.51.233/json
+Response Code : 200
+{  "ip": "66.30.51.233",  "hostname": "c-66-30-51-233.hsd1.ma.comcast.net",  "city": "Carlisle",  "region": "Massachusetts",  "country": "US",  "loc": "42.5293,-71.3495",  "org": "AS7922 Comcast Cable Communications, LLC",  "postal": "01741",  "timezone": "America/New_York",  "readme": "https://ipinfo.io/missingauth"}
+20:55:20.620 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Closing Window
+20:55:20.635 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Reading File
+20:55:20.635 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Loading Accounts
+20:55:20.635 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Reading Line: 0
+20:55:20.635 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Getting Info
+20:55:20.776 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - New Account Made
+20:55:20.776 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Created Account: 0
+20:55:20.776 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Opening Login Panel
+20:55:20.777 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Window Loaded In
+20:55:20.802 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Logging Out
+20:55:25.116 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Reading Login File
+20:55:25.116 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Didn't Find Login... Trying Again
+20:55:25.120 [AWT-EventQueue-0] INFO com.pulsebeat02.main.util.logging.Logger - Login Not Found
