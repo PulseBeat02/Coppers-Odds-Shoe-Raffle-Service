@@ -24,6 +24,10 @@ This project uses a variety of dependencies. I will list all of them here:
  - **JSON Simple**, another JSON parsing library used for parsing JSON files. The maven repository is [here](https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple).
  - **Javax.servlet**, a library used for making servlets. Ideal for when making calls to the papal server using the rest api. The maven repository is here: [here](https://mvnrepository.com/artifact/javax.servlet/servlet-api).
 
+## Note About the Github Repository
+
+Unfortuantly, I wasn't able to upload any song files onto github, so you won't be able to listen or choose music, as it will throw an IOException. If you want to play around with the code, I will upload a release that contains the .mp3 to check if it is working or not. Thanks.
+
 ## Code Check
 
 If you are here for code check, thank you, and I hope my code looks ok. Make pull requests, open issues, or send emails to brandonli2006ma@gmail.com  . I am a newbie at Java, and may make some mistakes. Here are some current issues I have as in right now.
