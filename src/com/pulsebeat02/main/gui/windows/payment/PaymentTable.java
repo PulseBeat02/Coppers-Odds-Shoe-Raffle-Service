@@ -3,6 +3,10 @@ package com.pulsebeat02.main.gui.windows.payment;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -22,11 +26,12 @@ public class PaymentTable {
 
 	// Constructor
 	public PaymentTable() {
-		
+
 		ManageAccounts.read();
-		
+
 		f = new JFrame();
-		f.setIconImage(Toolkit.getDefaultToolkit().getImage(PaymentTable.class.getResource("/com/pulsebeat02/main/resources/images/mainmenu/dollarbill.png")));
+		f.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				PaymentTable.class.getResource("/com/pulsebeat02/main/resources/images/mainmenu/dollarbill.png")));
 
 		// Frame Title
 		f.setTitle("Payments");
@@ -34,7 +39,7 @@ public class PaymentTable {
 		// Data to be displayed in the JTable
 
 		ArrayList<String[]> data = new ArrayList<String[]>();
-		
+
 		LocalDate localDate = LocalDate.now();
 
 		String[] madeAccount = { "New Account", DateTimeFormatter.ofPattern("yyy/MM/dd").format(localDate),
@@ -42,11 +47,13 @@ public class PaymentTable {
 				"Don't mind this, it's to make sure payments are working!" };
 
 		data.add(madeAccount);
-		
-		// ManagePayments.allPayments.add(Payment.getPaymentFromStringArrayTable(madeAccount, account));
-		
-		// ManagePayments.allPayments.put(new Payment(null, null, null, null, 0, null, false, null), null);
-		
+
+		// ManagePayments.allPayments.add(Payment.getPaymentFromStringArrayTable(madeAccount,
+		// account));
+
+		// ManagePayments.allPayments.put(new Payment(null, null, null, null, 0, null,
+		// false, null), null);
+
 		// ArrayUtilities.getRidOfNull(ManagePayments.allPayments);
 
 		for (int i = 0; i < getPayments(account).length; i++) {
@@ -104,16 +111,18 @@ public class PaymentTable {
 		new PaymentTable();
 
 	}
-	
+
 	public static Payment[] getPayments(Account account) {
-		
+
 		ManagePayments.read();
 
 		ArrayList<Payment> payments = new ArrayList<Payment>();
 
-		for (int i = 0; i < ManagePayments.allPayments.size(); i++) {
-			
-			Payment key = (Payment) ManagePayments.allPayments.keySet().toArray()[i];
+		Payment[] allPayments = getPayments();
+
+		for (int i = 0; i < allPayments.length; i++) {
+
+			Payment key = allPayments[i];
 
 			if (key.account.equals(account) // Account is Null
 					&& key != null) {
@@ -121,18 +130,17 @@ public class PaymentTable {
 				payments.add(key);
 
 			}
-			
+
 			else {
-				
+
 				Logger.LOG.error("Warning, Account is Null");
-				
-				Payment [] dummy = new Payment[0];
-				
+
+				Payment[] dummy = new Payment[0];
+
 				dummy[0] = key;
-				
+
 				return dummy;
-				
-				
+
 			}
 
 		}
@@ -140,7 +148,7 @@ public class PaymentTable {
 		return payments.stream().toArray(Payment[]::new);
 
 	}
-	
+
 	static int binarySearch(ArrayList<String> arr, String x) {
 		int l = 0, r = arr.size() - 1;
 		while (l <= r) {
@@ -162,6 +170,45 @@ public class PaymentTable {
 		}
 
 		return -1;
+	}
+
+	public static Payment[] getPayments() {
+
+		Set<Entry<String, Payment>> set = ManagePayments.allPayments.entrySet();
+
+		Payment[] payments = new Payment[set.size()];
+
+		for (int i = 0; i < payments.length; i++) {
+
+			payments[i] = Payment.class.cast(getValue(set, i));
+
+		}
+
+		return payments;
+
+	}
+
+	public static Object getValue(Set<Entry<String, Payment>> set, int index) {
+
+		Iterator<Entry<String, Payment>> it = set.iterator();
+
+		int target = 0;
+
+		while (it.hasNext()) {
+
+			target++;
+
+			if (target == index) {
+
+				Map.Entry<String, Payment> entry = (Map.Entry<String, Payment>) it.next();
+				return entry.getValue();
+
+			}
+
+		}
+		
+		return null;
+
 	}
 
 }
