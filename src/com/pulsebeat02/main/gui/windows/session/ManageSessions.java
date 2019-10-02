@@ -139,7 +139,7 @@ public class ManageSessions {
 
 		for (int i = 0; i < allSessions.size(); i++) {// Check if two sessions are equal or not
 
-			Session key = (Session) ManageSessions.allSessions.keySet().toArray()[i];
+			Session key = Session.class.cast(ManageSessions.allSessions.keySet().toArray()[i]);
 
 			for (int j = 0; j < allSessions.size(); j++) {
 

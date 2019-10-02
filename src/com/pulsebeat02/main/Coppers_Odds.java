@@ -26,7 +26,6 @@ public class Coppers_Odds {
 
 	public static boolean isConnected = true;
 
-
 	public static void main(String[] args) {
 
 		// TODO Auto-generated method stub

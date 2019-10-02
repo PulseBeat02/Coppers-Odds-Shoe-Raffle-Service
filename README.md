@@ -28,6 +28,10 @@ This project uses a variety of dependencies. I will list all of them here:
 
 ~~Unfortuantly, I wasn't able to upload any song files onto github, so you won't be able to listen or choose music, as it will throw an IOException. If you want to play around with the code, I will upload a release that contains the .mp3 to check if it is working or not. Thanks.~~ Edit: I was able to fix this by using git lfs here: https://git-lfs.github.com/ Now, you should be able to just download the repository. 
 
+## Branches
+
+I have two branches. Master, and dev (development). I use Master to push updates, and I use dev for development. I suggest for people who are doing code checks to use the dev branch, as it contains the latest updated code.
+
 ## Code Check
 
 If you are here for code check, thank you, and I hope my code looks ok. Make pull requests, open issues, or send emails to brandonli2006ma@gmail.com  . I am a newbie at Java, and may make some mistakes. Here are some current issues I have as in right now.

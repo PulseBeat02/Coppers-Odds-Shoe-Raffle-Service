@@ -18,7 +18,9 @@ import com.pulsebeat02.main.util.logging.Logger;
 public class ManagePayments {
 
 	static String cwd = System.getProperty("user.dir");
+	
 	public static ConcurrentHashMap<String, Payment> allPayments = new ConcurrentHashMap<String, Payment>();
+	
 //	public static ArrayList<Payment> allPayments = new ArrayList<Payment>();
 //	public static ArrayList<String> allPaymentIDs = new ArrayList<String>();
 
