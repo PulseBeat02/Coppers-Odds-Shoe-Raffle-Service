@@ -41,4 +41,4 @@ I have two branches. Master, and dev (development). I use Master to push updates
 If you are here for code check, thank you, and I hope my code looks ok. Make pull requests, open issues, or send emails to brandonli2006ma@gmail.com  . I am a newbie at Java, and may make some mistakes. Here are some current issues I have as in right now.
 
 - Paypal Payments Have Issues. Links for redirect, return, etc won't work. Issue opened [here](https://github.com/paypal/PayPal-Java-SDK/issues/387).
-- Payment window won't show up. It just shows a null pointer exception, even though it was initialized in the begginning. Not sure why, but further debugging should hint where the problem is.
+- Null Pointer Exception because of problems having to do with getting the value/key of an element in a ConcurrentHashMap. This problem is happening to Sessions, Accounts, and Payments.
