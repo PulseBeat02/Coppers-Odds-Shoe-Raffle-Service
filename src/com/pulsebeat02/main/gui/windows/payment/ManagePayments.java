@@ -34,10 +34,6 @@ public class ManagePayments {
 		
 		ManageAccounts.start();
 		
-		//Payment payment = new Payment("test", "test", "test", "test", 0, null, false, ManageAccounts.allAccounts.get(0));
-		
-		//allPayments.add(payment);
-		
 		Scanner scanner = null;
 		try {
 			scanner = new Scanner(new FileReader(cwd + "/allPayments"));
@@ -82,9 +78,6 @@ public class ManagePayments {
 
 			Payment GeneratedPayment = new Payment(name, date, description, otherNotes, cost, UUID.fromString(ID), verified,
 					account);
-			
-//			ManagePayments.allPaymentIDs.add(GeneratedPayment.id);
-//			ManagePayments.allPayments.add(GeneratedPayment);
 			
 			allPayments.put(GeneratedPayment.id, GeneratedPayment);
 

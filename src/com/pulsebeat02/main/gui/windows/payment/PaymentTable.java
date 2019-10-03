@@ -12,9 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import com.pulsebeat02.main.gui.windows.StartingWindow;
 import com.pulsebeat02.main.gui.windows.account.Account;
 import com.pulsebeat02.main.gui.windows.account.ManageAccounts;
 import com.pulsebeat02.main.util.logging.Logger;
+
+import java.awt.Cursor;
 import java.awt.Toolkit;
 
 public class PaymentTable {
@@ -39,22 +42,6 @@ public class PaymentTable {
 		// Data to be displayed in the JTable
 
 		ArrayList<String[]> data = new ArrayList<String[]>();
-
-		LocalDate localDate = LocalDate.now();
-
-		String[] madeAccount = { "New Account", DateTimeFormatter.ofPattern("yyy/MM/dd").format(localDate),
-				"Made New Account", "0", "true", "89f12d36-a548-4041-bb75-f56eaf3cf5ff",
-				"Don't mind this, it's to make sure payments are working!" };
-
-		data.add(madeAccount);
-
-		// ManagePayments.allPayments.add(Payment.getPaymentFromStringArrayTable(madeAccount,
-		// account));
-
-		// ManagePayments.allPayments.put(new Payment(null, null, null, null, 0, null,
-		// false, null), null);
-
-		// ArrayUtilities.getRidOfNull(ManagePayments.allPayments);
 
 		for (int i = 0; i < getPayments(account).length; i++) {
 
@@ -94,6 +81,9 @@ public class PaymentTable {
 		f.setSize(750, 550);
 		// Frame Visible = true
 		f.setVisible(true);
+		
+		StartingWindow.frmShoeRafflePrize.setEnabled(true);
+		StartingWindow.frmShoeRafflePrize.setCursor(Cursor.getDefaultCursor());
 
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
@@ -123,9 +113,10 @@ public class PaymentTable {
 		for (int i = 0; i < allPayments.length; i++) {
 
 			Payment key = allPayments[i];
+			
+			System.out.println(key.account);
 
-			if (key.account.equals(account) // Account is Null
-					&& key != null) {
+			if ((key.account.accountID).equals(account.accountID) && key != null) {
 
 				payments.add(key);
 
