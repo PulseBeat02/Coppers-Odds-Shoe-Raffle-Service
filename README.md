@@ -16,11 +16,13 @@ This project uses a variety of dependencies. I will list all of them here:
  - **Javax.mail**, a library made from javax that is used to send emails. This would be used to account verification, resetting passwords, etc. The maven repository is located [here](https://mvnrepository.com/artifact/javax.mail/mail).
  - **SLF4J**, **SLF4J - Log4J**, and **Log4J**. These libraries are vital to the program, a they help make log files for the program. The maven repository is located [here](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j).
  - **Paypal SDK**, this library allows my program to make a paypal payment when users buy tickets. Maven is shown here: 
-`		<dependency>
+ ```
+		<dependency>
 			<groupId>com.paypal.sdk</groupId>
 			<artifactId>rest-api-sdk</artifactId>
 			<version>LATEST</version>
-		</dependency>`
+		</dependency>
+```		
  - **JSON Simple**, another JSON parsing library used for parsing JSON files. The maven repository is [here](https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple).
  - **Javax.servlet**, a library used for making servlets. Ideal for when making calls to the papal server using the rest api. The maven repository is here: [here](https://mvnrepository.com/artifact/javax.servlet/servlet-api).
 
@@ -28,6 +30,8 @@ This project uses a variety of dependencies. I will list all of them here:
 
 ~~Unfortuantly, I wasn't able to upload any song files onto github, so you won't be able to listen or choose music, as it will throw an IOException. If you want to play around with the code, I will upload a release that contains the .mp3 to check if it is working or not. Thanks.~~ Edit: I was able to fix this by using git lfs here: https://git-lfs.github.com/ Now, you should be able to just download the repository. 
 
+## How to Run this Application
+Download the repository as a zip file, then import it into eclipse. The main class is Coppers_Odds.java, so click the run button when you are in that class.
 ## Branches
 
 I have two branches. Master, and dev (development). I use Master to push updates, and I use dev for development. I suggest for people who are doing code checks to use the dev branch, as it contains the latest updated code.
@@ -37,4 +41,4 @@ I have two branches. Master, and dev (development). I use Master to push updates
 If you are here for code check, thank you, and I hope my code looks ok. Make pull requests, open issues, or send emails to brandonli2006ma@gmail.com  . I am a newbie at Java, and may make some mistakes. Here are some current issues I have as in right now.
 
 - Paypal Payments Have Issues. Links for redirect, return, etc won't work. Issue opened [here](https://github.com/paypal/PayPal-Java-SDK/issues/387).
-- Payment window won't show up. It just shows a null pointer exception, even though it was initialized in the begginning. Not sure why, but further debugging should hint where the problem is.
+- Null Pointer Exception because of problems having to do with getting the value/key of an element in a ConcurrentHashMap. This problem is happening to Sessions, Accounts, and Payments.
