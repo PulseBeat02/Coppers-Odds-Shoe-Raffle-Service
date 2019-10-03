@@ -39,6 +39,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Desktop;
 
 import javax.swing.JPanel;
@@ -682,7 +683,9 @@ public class StartingWindow extends SwingWorker<Integer, Void> {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PaymentTable.account = account;
+				PaymentTable.account = account;			
+				frmShoeRafflePrize.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				frmShoeRafflePrize.setEnabled(false);
 				PaymentTable.start();
 			}
 		});

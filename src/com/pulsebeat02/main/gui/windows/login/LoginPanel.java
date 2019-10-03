@@ -340,6 +340,8 @@ public class LoginPanel {
 					Logger.LOG.info("Login Not Found");
 
 				}
+				
+				frmLogin.setCursor(Cursor.getDefaultCursor());
 
 			}
 
