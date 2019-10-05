@@ -46,7 +46,7 @@ import com.pulsebeat02.main.gui.Shoe;
 import com.pulsebeat02.main.gui.windows.account.Account;
 import com.pulsebeat02.main.gui.windows.raffles.PickRandomRaffle;
 import com.pulsebeat02.main.gui.windows.raffles.RaffleTicket;
-import com.pulsebeat02.main.util.JSON_reader.Edit_JSON;
+import com.pulsebeat02.main.util.JSON.Edit_JSON;
 import com.pulsebeat02.main.util.logging.Logger;
 import com.pulsebeat02.main.gui.windows.payment.ManagePayments;
 import com.pulsebeat02.main.gui.windows.paypal.ClientID_Secret;

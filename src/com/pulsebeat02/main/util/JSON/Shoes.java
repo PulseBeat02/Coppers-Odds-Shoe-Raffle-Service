@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.util.JSON_reader;
+package com.pulsebeat02.main.util.JSON;
 
 import java.util.List;
 

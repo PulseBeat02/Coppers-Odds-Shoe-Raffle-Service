@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.util.array_management;
+package com.pulsebeat02.main.util.arrayutil;
 
 import java.util.ArrayList;
 
