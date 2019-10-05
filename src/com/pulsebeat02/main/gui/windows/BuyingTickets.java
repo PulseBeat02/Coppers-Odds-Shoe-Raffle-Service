@@ -117,7 +117,7 @@ public class BuyingTickets {
 		frmBuyingTickets.setIconImage(Toolkit.getDefaultToolkit().getImage(BuyingTickets.class
 				.getResource("/com/pulsebeat02/main/resources/images/mainmenu/infoButton/infoicon.png")));
 		frmBuyingTickets.setTitle("Buying Tickets");
-		frmBuyingTickets.setBounds(100, 100, 450, 250);
+		frmBuyingTickets.setBounds(100, 100, 450, 407);
 		frmBuyingTickets.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmBuyingTickets.getContentPane().setLayout(null);
 		frmBuyingTickets.setResizable(false);
@@ -522,6 +522,7 @@ public class BuyingTickets {
 		lblNewLabel_1.setFont(new Font("Futura", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(10, 127, 424, 48);
 		frmBuyingTickets.getContentPane().add(lblNewLabel_1);
+
 		btnClose.addActionListener(new ActionListener() {
 
 			@Override
