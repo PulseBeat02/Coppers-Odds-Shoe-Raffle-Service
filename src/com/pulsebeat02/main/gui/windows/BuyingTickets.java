@@ -46,7 +46,7 @@ import com.pulsebeat02.main.gui.Shoe;
 import com.pulsebeat02.main.gui.windows.account.Account;
 import com.pulsebeat02.main.gui.windows.raffles.PickRandomRaffle;
 import com.pulsebeat02.main.gui.windows.raffles.RaffleTicket;
-import com.pulsebeat02.main.util.JSON_reader.Edit_JSON;
+import com.pulsebeat02.main.util.JSON.Edit_JSON;
 import com.pulsebeat02.main.util.logging.Logger;
 import com.pulsebeat02.main.gui.windows.payment.ManagePayments;
 import com.pulsebeat02.main.gui.windows.paypal.ClientID_Secret;
@@ -117,7 +117,7 @@ public class BuyingTickets {
 		frmBuyingTickets.setIconImage(Toolkit.getDefaultToolkit().getImage(BuyingTickets.class
 				.getResource("/com/pulsebeat02/main/resources/images/mainmenu/infoButton/infoicon.png")));
 		frmBuyingTickets.setTitle("Buying Tickets");
-		frmBuyingTickets.setBounds(100, 100, 450, 250);
+		frmBuyingTickets.setBounds(100, 100, 450, 407);
 		frmBuyingTickets.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmBuyingTickets.getContentPane().setLayout(null);
 		frmBuyingTickets.setResizable(false);
@@ -188,8 +188,8 @@ public class BuyingTickets {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String clientID = "AXWWfp8KsCf6kojBHqRj_T_UbMANBywrKpYKF4RYk8d4RAPJuKOLVTssutZFG3QaphfckVX5kMEK9ASq";
-				String secret = "EKhXVGxGanyOnEp5rzDryPqnu0nxXJA9l80U9S-mETsAVGyqtnD_g6r6ESjVI3AzBy4wczBdjqJ2mX2w";
+				String clientID = "";
+				String secret = "";
 
 				if (!ClientID_Secret.getClientID().equals("empty")) {
 
@@ -522,6 +522,7 @@ public class BuyingTickets {
 		lblNewLabel_1.setFont(new Font("Futura", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(10, 127, 424, 48);
 		frmBuyingTickets.getContentPane().add(lblNewLabel_1);
+
 		btnClose.addActionListener(new ActionListener() {
 
 			@Override

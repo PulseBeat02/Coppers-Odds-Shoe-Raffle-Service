@@ -19,10 +19,10 @@ import com.pulsebeat02.main.gui.windows.payment.ManagePayments;
 import com.pulsebeat02.main.gui.windows.register.AccountCreated;
 import com.pulsebeat02.main.gui.windows.session.ClearSessions;
 import com.pulsebeat02.main.gui.windows.thread.ManageThreads;
-import com.pulsebeat02.main.util.JSON_reader.ReadJSON;
+import com.pulsebeat02.main.util.JSON.ReadJSON;
 import com.pulsebeat02.main.util.logging.Logger;
 
-public class Coppers_Odds {
+public class Main {
 
 	public static boolean isConnected = true;
 
