@@ -188,8 +188,8 @@ public class BuyingTickets {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String clientID = "AXWWfp8KsCf6kojBHqRj_T_UbMANBywrKpYKF4RYk8d4RAPJuKOLVTssutZFG3QaphfckVX5kMEK9ASq";
-				String secret = "EKhXVGxGanyOnEp5rzDryPqnu0nxXJA9l80U9S-mETsAVGyqtnD_g6r6ESjVI3AzBy4wczBdjqJ2mX2w";
+				String clientID = "";
+				String secret = "";
 
 				if (!ClientID_Secret.getClientID().equals("empty")) {
 
