@@ -42,3 +42,5 @@ If you are here for code check, thank you, and I hope my code looks ok. Make pul
 
 - Paypal Payments Have Issues. Links for redirect, return, etc won't work. Issue opened [here](https://github.com/paypal/PayPal-Java-SDK/issues/387).
 - Null Pointer Exception because of problems having to do with getting the value/key of an element in a ConcurrentHashMap. This problem is happening to Sessions, Accounts, and Payments.
+
+- Thank you hchen for doing a code check
