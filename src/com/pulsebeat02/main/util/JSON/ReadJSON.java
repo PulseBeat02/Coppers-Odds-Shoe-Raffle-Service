@@ -214,7 +214,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pulsebeat02.main.gui.Shoe;
-import com.pulsebeat02.main.gui.windows.StartingWindow;
+import com.pulsebeat02.main.gui.application.StartingWindow;
 
 public class ReadJSON {
 

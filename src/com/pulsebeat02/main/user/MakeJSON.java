@@ -13,8 +13,8 @@ import java.nio.file.Files;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.google.gson.Gson;
-import com.pulsebeat02.main.gui.windows.account.Account;
-import com.pulsebeat02.main.gui.windows.account.ManageAccounts;
+import com.pulsebeat02.main.gui.application.account.Account;
+import com.pulsebeat02.main.gui.application.account.ManageAccounts;
 import com.pulsebeat02.main.user.server.Server;
 
 public class MakeJSON {

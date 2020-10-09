@@ -9,10 +9,10 @@ import java.net.URLConnection;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.pulsebeat02.main.gui.windows.NoConnection;
-import com.pulsebeat02.main.gui.windows.login.LoginPanel;
-import com.pulsebeat02.main.gui.windows.payment.ManagePayments;
-import com.pulsebeat02.main.gui.windows.session.ClearSessions;
+import com.pulsebeat02.main.gui.application.NoConnection;
+import com.pulsebeat02.main.gui.application.login.LoginPanel;
+import com.pulsebeat02.main.gui.application.payment.ManagePayments;
+import com.pulsebeat02.main.gui.application.session.ClearSessions;
 import com.pulsebeat02.main.util.JSON.ReadJSON;
 import com.pulsebeat02.main.util.logging.Logger;
 

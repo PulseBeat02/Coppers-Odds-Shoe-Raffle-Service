@@ -12,13 +12,13 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import com.pulsebeat02.main.gui.windows.NoConnection;
-import com.pulsebeat02.main.gui.windows.StartingWindow;
-import com.pulsebeat02.main.gui.windows.login.LoginPanel;
-import com.pulsebeat02.main.gui.windows.payment.ManagePayments;
-import com.pulsebeat02.main.gui.windows.register.AccountCreated;
-import com.pulsebeat02.main.gui.windows.session.ClearSessions;
-import com.pulsebeat02.main.gui.windows.thread.ManageThreads;
+import com.pulsebeat02.main.gui.application.NoConnection;
+import com.pulsebeat02.main.gui.application.StartingWindow;
+import com.pulsebeat02.main.gui.application.login.LoginPanel;
+import com.pulsebeat02.main.gui.application.payment.ManagePayments;
+import com.pulsebeat02.main.gui.application.register.AccountCreated;
+import com.pulsebeat02.main.gui.application.session.ClearSessions;
+import com.pulsebeat02.main.gui.application.thread.ManageThreads;
 import com.pulsebeat02.main.util.JSON.ReadJSON;
 import com.pulsebeat02.main.util.logging.Logger;
 
