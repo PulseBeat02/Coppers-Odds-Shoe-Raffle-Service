@@ -1,4 +1,4 @@
-package com.pulsebeat02.shoeraffleservice.testunit;
+package com.pulsebeat02.shoeraffleservice.test;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;

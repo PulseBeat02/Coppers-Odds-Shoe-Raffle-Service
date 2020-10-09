@@ -1,4 +1,4 @@
-package com.pulsebeat02.shoeraffleservice.user.server;
+package com.pulsebeat02.shoeraffleservice.application.user.server;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

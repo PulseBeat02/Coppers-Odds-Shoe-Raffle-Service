@@ -1,4 +1,4 @@
-package com.pulsebeat02.shoeraffleservice.testunit.newpaypalsamples;
+package com.pulsebeat02.shoeraffleservice.test.newpaypalsamples;
 
 import com.paypal.core.PayPalEnvironment;
 import com.paypal.core.PayPalHttpClient;

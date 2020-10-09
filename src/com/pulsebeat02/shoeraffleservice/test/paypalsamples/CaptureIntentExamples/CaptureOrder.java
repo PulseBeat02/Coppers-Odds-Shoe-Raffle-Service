@@ -1,4 +1,4 @@
-package com.pulsebeat02.shoeraffleservice.testunit.paypalsamples.CaptureIntentExamples;
+package com.pulsebeat02.shoeraffleservice.test.paypalsamples.CaptureIntentExamples;
 /*
  * package com.test.paypalsamples.CaptureIntentExamples;
  * 

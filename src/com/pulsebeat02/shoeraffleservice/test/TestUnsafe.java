@@ -1,4 +1,4 @@
-package com.pulsebeat02.shoeraffleservice.testunit;
+package com.pulsebeat02.shoeraffleservice.test;
 
 
 public class TestUnsafe {

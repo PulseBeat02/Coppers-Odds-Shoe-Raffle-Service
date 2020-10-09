@@ -1,4 +1,4 @@
-package com.pulsebeat02.shoeraffleservice.testunit.newpaypalsamples;
+package com.pulsebeat02.shoeraffleservice.test.newpaypalsamples;
 
 import java.io.IOException;
 

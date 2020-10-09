@@ -18,152 +18,151 @@ import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 public class ShoeRaffleService {
 
-	static ShoeRaffleService INSTANCE;
-	
-	public boolean isConnected;
+    static ShoeRaffleService INSTANCE;
 
-	public boolean generate;
-	public boolean useLock;
+    public boolean isConnected;
 
-	public int cpuThreads;
-	public int userThreadSize;
+    public boolean generate;
+    public boolean useLock;
 
-	public ShoeRaffleService(String[] args) throws IOException {
-		
-		try {
-			switch (args.length) {
-			
-			case 0:
-				this.generate = true;
-				this.useLock = true;
-				this.cpuThreads = 8;
-				this.userThreadSize = 1;
-				NoMultipleInstances.check(generate);
-				break;
-				
-			case 1:
-				this.generate = Boolean.parseBoolean(args[0]);
-				this.useLock = true;
-				this.cpuThreads = 8;
-				this.userThreadSize = 1;
-				NoMultipleInstances.check(generate);
-				break;
+    public int cpuThreads;
+    public int userThreadSize;
 
-			case 2:
-				this.generate = Boolean.parseBoolean(args[0]);
-				this.useLock = Boolean.parseBoolean(args[1]);
-				this.cpuThreads = 8;
-				this.userThreadSize = 1;
-				NoMultipleInstances.check(generate);
-				break;
+    public ShoeRaffleService(String[] args) throws IOException {
 
-			case 3:
-				this.generate = Boolean.parseBoolean(args[0]);
-				this.useLock = Boolean.parseBoolean(args[1]);
-				this.cpuThreads = Integer.parseInt(args[2]);
-				this.userThreadSize = 1;
-				NoMultipleInstances.check(generate);
-				break;
+	try {
+	    switch (args.length) {
 
-			case 4:
-				this.generate = Boolean.parseBoolean(args[0]);
-				this.useLock = Boolean.parseBoolean(args[1]);
-				this.cpuThreads = Integer.parseInt(args[2]);
-				this.userThreadSize = Integer.parseInt(args[3]);
-				NoMultipleInstances.check(generate);
-				break;
+	    case 0:
+		this.generate = true;
+		this.useLock = true;
+		this.cpuThreads = 8;
+		this.userThreadSize = 1;
+		NoMultipleInstances.check(generate);
+		break;
 
-			default:
-				this.generate = Boolean.parseBoolean(args[0]);
-				this.useLock = Boolean.parseBoolean(args[1]);
-				this.cpuThreads = Integer.parseInt(args[2]);
-				this.userThreadSize = Integer.parseInt(args[3]);
-				NoMultipleInstances.check(generate);
-				break;
+	    case 1:
+		this.generate = Boolean.parseBoolean(args[0]);
+		this.useLock = true;
+		this.cpuThreads = 8;
+		this.userThreadSize = 1;
+		NoMultipleInstances.check(generate);
+		break;
 
-			}
-			
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+	    case 2:
+		this.generate = Boolean.parseBoolean(args[0]);
+		this.useLock = Boolean.parseBoolean(args[1]);
+		this.cpuThreads = 8;
+		this.userThreadSize = 1;
+		NoMultipleInstances.check(generate);
+		break;
 
-		ClearSessions clearsession = new ClearSessions();
-		clearsession.start();
+	    case 3:
+		this.generate = Boolean.parseBoolean(args[0]);
+		this.useLock = Boolean.parseBoolean(args[1]);
+		this.cpuThreads = Integer.parseInt(args[2]);
+		this.userThreadSize = 1;
+		NoMultipleInstances.check(generate);
+		break;
 
-		PrintStream out = new PrintStream(new FileOutputStream("latest.log"));
-		System.setOut(out);
+	    case 4:
+		this.generate = Boolean.parseBoolean(args[0]);
+		this.useLock = Boolean.parseBoolean(args[1]);
+		this.cpuThreads = Integer.parseInt(args[2]);
+		this.userThreadSize = Integer.parseInt(args[3]);
+		NoMultipleInstances.check(generate);
+		break;
 
-		String cwd = System.getProperty("user.dir");
-		String cwdHome = System.getProperty("user.home");
+	    default:
+		this.generate = Boolean.parseBoolean(args[0]);
+		this.useLock = Boolean.parseBoolean(args[1]);
+		this.cpuThreads = Integer.parseInt(args[2]);
+		this.userThreadSize = Integer.parseInt(args[3]);
+		NoMultipleInstances.check(generate);
+		break;
 
-		Logger.LOG.info(cwd);
-		Logger.LOG.info(cwdHome);
+	    }
 
-		ReadJSON.main(null);
+	} catch (IllegalArgumentException e) {
+	    e.printStackTrace();
+	}
 
-		Logger.LOG.info("Program Loading");
+	ClearSessions clearsession = new ClearSessions();
+	clearsession.start();
 
-		Logger.main(null);
+	PrintStream out = new PrintStream(new FileOutputStream("latest.log"));
+	System.setOut(out);
 
-		ManagePayments.read();
+	String cwd = System.getProperty("user.dir");
+	String cwdHome = System.getProperty("user.home");
 
-		if (isConnected()) {
+	Logger.LOG.info(cwd);
+	Logger.LOG.info(cwdHome);
 
-			try {
-			    LoginPanel.start(true);
-			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			    // TODO Auto-generated catch block
-			    e.printStackTrace();
-			}
+	ReadJSON.main(null);
 
-			Logger.LOG.info("User Kept Login");
-			Logger.LOG.info("Network Connection Stable");
+	Logger.LOG.info("Program Loading");
 
-		} else {
+	Logger.main(null);
 
-			NoConnection.start();
-			this.isConnected = false;
-			Logger.LOG.warn("No network connection detected, showing NoConnection GUI");
+	ManagePayments.read();
 
-		}
+	if (isConnected()) {
+
+	    try {
+		LoginPanel.start(true);
+	    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+		    | UnsupportedLookAndFeelException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+
+	    Logger.LOG.info("User Kept Login");
+	    Logger.LOG.info("Network Connection Stable");
+
+	} else {
+
+	    NoConnection.start();
+	    this.isConnected = false;
+	    Logger.LOG.warn("No network connection detected, showing NoConnection GUI");
+
+	}
 
 //		LoadingScreen.main(null);
-		
+
 //		Thread resuseThread = new Thread(() -> {
 //			ManageThreads.reuseThreads();
 //		});
 //
 //		ManageThreads.utilityThreads.add(resuseThread);
-		
-	}
 
-	public static void main(String[] args) throws IOException {
-		INSTANCE = new ShoeRaffleService(args);
-	}
-	
-	public static ShoeRaffleService getInstance() {
-		return INSTANCE;
-	}
-	
+    }
 
-	public static boolean isConnected() {
-		try {
-			Logger.LOG.info("Running Network Test");
-			final URL url = new URL("http://www.bing.com");
-			Logger.LOG.info("Pinging Bing");
-			final URLConnection conn = url.openConnection();
-			conn.connect();
-			conn.getInputStream().close();
-			System.out.println("Connection Good");
-			return true;
-		} catch (MalformedURLException e) {
-			Logger.LOG.error("URL has problems");
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			Logger.LOG.error("IOException");
-			return false;
-		}
+    public static void main(String[] args) throws IOException {
+	INSTANCE = new ShoeRaffleService(args);
+    }
+
+    public static ShoeRaffleService getInstance() {
+	return INSTANCE;
+    }
+
+    public static boolean isConnected() {
+	try {
+	    Logger.LOG.info("Running Network Test");
+	    final URL url = new URL("http://www.bing.com");
+	    Logger.LOG.info("Pinging Bing");
+	    final URLConnection conn = url.openConnection();
+	    conn.connect();
+	    conn.getInputStream().close();
+	    System.out.println("Connection Good");
+	    return true;
+	} catch (MalformedURLException e) {
+	    Logger.LOG.error("URL has problems");
+	    throw new RuntimeException(e);
+	} catch (IOException e) {
+	    Logger.LOG.error("IOException");
+	    return false;
 	}
+    }
 
 }
