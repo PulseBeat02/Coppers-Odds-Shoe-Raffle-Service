@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.gui.application;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import java.awt.Dimension;
 
@@ -8,13 +8,6 @@ import javax.swing.SwingConstants;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
-
-import com.pulsebeat02.main.gui.Shoe;
-import com.pulsebeat02.main.gui.application.account.Account;
-import com.pulsebeat02.main.gui.application.builder.CustomJLabel;
-import com.pulsebeat02.main.gui.application.login.LoginPanel;
-import com.pulsebeat02.main.gui.application.payment.PaymentTable;
-import com.pulsebeat02.main.util.logging.Logger;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -47,6 +40,13 @@ import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
+
+import com.pulsebeat02.shoeraffleservice.application.application.account.Account;
+import com.pulsebeat02.shoeraffleservice.application.application.builder.CustomJLabel;
+import com.pulsebeat02.shoeraffleservice.application.application.login.LoginPanel;
+import com.pulsebeat02.shoeraffleservice.application.application.payment.PaymentTable;
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JEditorPane;

@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.gui.application;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import java.awt.EventQueue;
 
@@ -13,9 +13,6 @@ import java.net.URL;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import com.pulsebeat02.main.gui.Shoe;
-import com.pulsebeat02.main.util.logging.Logger;
-
 import java.awt.Font;
 import java.awt.Image;
 
@@ -28,6 +25,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
+
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 public class ShoeGUI {
 

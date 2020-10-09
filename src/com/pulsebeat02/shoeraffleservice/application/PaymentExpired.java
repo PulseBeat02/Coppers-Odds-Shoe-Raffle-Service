@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.gui.application;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;

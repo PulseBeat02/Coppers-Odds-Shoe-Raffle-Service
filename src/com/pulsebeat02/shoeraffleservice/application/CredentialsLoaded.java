@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.gui.application;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

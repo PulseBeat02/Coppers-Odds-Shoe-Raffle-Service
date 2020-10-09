@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.util.logging;
+package com.pulsebeat02.shoeraffleservice.util.logging;
 
 import org.apache.log4j.LogManager;
 

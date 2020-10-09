@@ -1,9 +1,9 @@
-package com.pulsebeat02.main.gui.application;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import java.io.IOException;
 
-import com.pulsebeat02.main.gui.application.account.ManageAccounts;
-import com.pulsebeat02.main.gui.application.payment.ManagePayments;
+import com.pulsebeat02.shoeraffleservice.application.application.account.ManageAccounts;
+import com.pulsebeat02.shoeraffleservice.application.application.payment.ManagePayments;
 
 public class Refresh {
 

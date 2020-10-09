@@ -203,7 +203,7 @@
 //
 //}
 
-package com.pulsebeat02.main.util.JSON;
+package com.pulsebeat02.shoeraffleservice.util.JSON;
 
 import java.io.File;
 import java.io.IOException;
@@ -213,8 +213,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.pulsebeat02.main.gui.Shoe;
-import com.pulsebeat02.main.gui.application.StartingWindow;
+import com.pulsebeat02.shoeraffleservice.application.Shoe;
+import com.pulsebeat02.shoeraffleservice.application.StartingWindow;
 
 public class ReadJSON {
 

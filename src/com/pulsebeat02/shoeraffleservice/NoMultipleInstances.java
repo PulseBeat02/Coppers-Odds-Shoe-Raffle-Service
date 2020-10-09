@@ -1,4 +1,4 @@
-package com.pulsebeat02.main;
+package com.pulsebeat02.shoeraffleservice;
 
 import java.io.File;
 import java.io.IOException;

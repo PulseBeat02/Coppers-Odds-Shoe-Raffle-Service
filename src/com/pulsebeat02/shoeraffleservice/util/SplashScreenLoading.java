@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.util;
+package com.pulsebeat02.shoeraffleservice.util;
 
 public class SplashScreenLoading {
 	

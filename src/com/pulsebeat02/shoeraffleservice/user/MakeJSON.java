@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.user;
+package com.pulsebeat02.shoeraffleservice.user;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,9 +13,9 @@ import java.nio.file.Files;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.google.gson.Gson;
-import com.pulsebeat02.main.gui.application.account.Account;
-import com.pulsebeat02.main.gui.application.account.ManageAccounts;
-import com.pulsebeat02.main.user.server.Server;
+import com.pulsebeat02.shoeraffleservice.application.application.account.Account;
+import com.pulsebeat02.shoeraffleservice.application.application.account.ManageAccounts;
+import com.pulsebeat02.shoeraffleservice.user.server.Server;
 
 public class MakeJSON {
 	

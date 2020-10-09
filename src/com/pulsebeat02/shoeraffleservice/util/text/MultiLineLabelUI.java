@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.util.text;
+package com.pulsebeat02.shoeraffleservice.util.text;
 
 import java.awt.Dimension;
 import java.awt.FontMetrics;

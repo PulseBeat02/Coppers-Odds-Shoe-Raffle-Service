@@ -1,4 +1,4 @@
-package com.pulsebeat02.main;
+package com.pulsebeat02.shoeraffleservice;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,12 +9,12 @@ import java.net.URLConnection;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.pulsebeat02.main.gui.application.NoConnection;
-import com.pulsebeat02.main.gui.application.login.LoginPanel;
-import com.pulsebeat02.main.gui.application.payment.ManagePayments;
-import com.pulsebeat02.main.gui.application.session.ClearSessions;
-import com.pulsebeat02.main.util.JSON.ReadJSON;
-import com.pulsebeat02.main.util.logging.Logger;
+import com.pulsebeat02.shoeraffleservice.application.NoConnection;
+import com.pulsebeat02.shoeraffleservice.application.application.login.LoginPanel;
+import com.pulsebeat02.shoeraffleservice.application.application.payment.ManagePayments;
+import com.pulsebeat02.shoeraffleservice.application.application.session.ClearSessions;
+import com.pulsebeat02.shoeraffleservice.util.JSON.ReadJSON;
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 public class ShoeRaffleService {
 

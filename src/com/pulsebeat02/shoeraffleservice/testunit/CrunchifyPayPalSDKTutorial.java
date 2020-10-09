@@ -1,4 +1,4 @@
-package com.test;
+package com.pulsebeat02.shoeraffleservice.testunit;
 
 import java.util.ArrayList;
 import java.util.List;

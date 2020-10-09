@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.util.JSON;
+package com.pulsebeat02.shoeraffleservice.util.JSON;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,8 +9,8 @@ import java.nio.file.Files;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.pulsebeat02.main.gui.Shoe;
-import com.pulsebeat02.main.util.logging.Logger;
+import com.pulsebeat02.shoeraffleservice.application.Shoe;
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 public class Edit_JSON {
 

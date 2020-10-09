@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.util.arrayutil;
+package com.pulsebeat02.shoeraffleservice.util.arrayutil;
 
 //import java.util.ArrayList;
 //import java.util.Collections;

@@ -1,8 +1,8 @@
-package com.pulsebeat02.main.util.arrayutil;
+package com.pulsebeat02.shoeraffleservice.util.arrayutil;
 
 import java.util.ArrayList;
 
-import com.pulsebeat02.main.util.logging.Logger;
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 public class ArrayUtilities {
 

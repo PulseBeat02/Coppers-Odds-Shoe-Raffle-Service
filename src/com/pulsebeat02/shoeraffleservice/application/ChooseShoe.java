@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.gui.application;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import java.awt.EventQueue;
 
@@ -8,9 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import com.pulsebeat02.main.gui.Shoe;
-import com.pulsebeat02.main.gui.application.account.Account;
-import com.pulsebeat02.main.util.logging.Logger;
+import com.pulsebeat02.shoeraffleservice.application.application.account.Account;
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 import java.awt.Font;
 import java.awt.Image;

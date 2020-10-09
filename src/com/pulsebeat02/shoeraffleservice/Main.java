@@ -1,4 +1,4 @@
-package com.pulsebeat02.main;
+package com.pulsebeat02.shoeraffleservice;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,15 +12,15 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import com.pulsebeat02.main.gui.application.NoConnection;
-import com.pulsebeat02.main.gui.application.StartingWindow;
-import com.pulsebeat02.main.gui.application.login.LoginPanel;
-import com.pulsebeat02.main.gui.application.payment.ManagePayments;
-import com.pulsebeat02.main.gui.application.register.AccountCreated;
-import com.pulsebeat02.main.gui.application.session.ClearSessions;
-import com.pulsebeat02.main.gui.application.thread.ManageThreads;
-import com.pulsebeat02.main.util.JSON.ReadJSON;
-import com.pulsebeat02.main.util.logging.Logger;
+import com.pulsebeat02.shoeraffleservice.application.NoConnection;
+import com.pulsebeat02.shoeraffleservice.application.StartingWindow;
+import com.pulsebeat02.shoeraffleservice.application.application.login.LoginPanel;
+import com.pulsebeat02.shoeraffleservice.application.application.payment.ManagePayments;
+import com.pulsebeat02.shoeraffleservice.application.application.register.AccountCreated;
+import com.pulsebeat02.shoeraffleservice.application.application.session.ClearSessions;
+import com.pulsebeat02.shoeraffleservice.application.application.thread.ManageThreads;
+import com.pulsebeat02.shoeraffleservice.util.JSON.ReadJSON;
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 public class Main {
 

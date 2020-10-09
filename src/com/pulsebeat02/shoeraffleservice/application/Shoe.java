@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.gui;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import java.awt.Image;
 import java.io.IOException;

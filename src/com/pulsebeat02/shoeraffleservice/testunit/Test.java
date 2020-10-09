@@ -1,4 +1,4 @@
-package com.test;
+package com.pulsebeat02.shoeraffleservice.testunit;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

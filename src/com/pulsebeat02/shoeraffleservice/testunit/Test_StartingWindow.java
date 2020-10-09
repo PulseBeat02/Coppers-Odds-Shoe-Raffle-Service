@@ -1,4 +1,4 @@
-package com.test;
+package com.pulsebeat02.shoeraffleservice.testunit;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -33,7 +33,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 
-import com.pulsebeat02.main.util.logging.Logger;
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 import javax.swing.JPasswordField;
 import javax.swing.border.EtchedBorder;

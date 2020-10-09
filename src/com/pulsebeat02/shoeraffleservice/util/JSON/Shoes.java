@@ -1,8 +1,8 @@
-package com.pulsebeat02.main.util.JSON;
+package com.pulsebeat02.shoeraffleservice.util.JSON;
 
 import java.util.List;
 
-import com.pulsebeat02.main.gui.Shoe;
+import com.pulsebeat02.shoeraffleservice.application.Shoe;
 
 public class Shoes {
 

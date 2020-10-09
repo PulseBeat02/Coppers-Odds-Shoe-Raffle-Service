@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.gui.application;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import java.awt.EventQueue;
 
@@ -41,16 +41,14 @@ import com.paypal.api.payments.RedirectUrls;
 import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
-
-import com.pulsebeat02.main.gui.Shoe;
-import com.pulsebeat02.main.gui.application.account.Account;
-import com.pulsebeat02.main.gui.application.payment.ManagePayments;
-import com.pulsebeat02.main.gui.application.paypal.ClientID_Secret;
-import com.pulsebeat02.main.gui.application.paypal.RunScript;
-import com.pulsebeat02.main.gui.application.raffles.PickRandomRaffle;
-import com.pulsebeat02.main.gui.application.raffles.RaffleTicket;
-import com.pulsebeat02.main.util.JSON.Edit_JSON;
-import com.pulsebeat02.main.util.logging.Logger;
+import com.pulsebeat02.shoeraffleservice.application.application.account.Account;
+import com.pulsebeat02.shoeraffleservice.application.application.payment.ManagePayments;
+import com.pulsebeat02.shoeraffleservice.application.application.paypal.ClientID_Secret;
+import com.pulsebeat02.shoeraffleservice.application.application.paypal.RunScript;
+import com.pulsebeat02.shoeraffleservice.application.application.raffles.PickRandomRaffle;
+import com.pulsebeat02.shoeraffleservice.application.application.raffles.RaffleTicket;
+import com.pulsebeat02.shoeraffleservice.util.JSON.Edit_JSON;
+import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
@@ -335,7 +333,7 @@ public class BuyingTickets {
 		    Edit_JSON.edit(currentShoe, amountofTickets + Edit_JSON.getOriginal(currentShoe));
 
 		    LocalDate localDate = LocalDate.now();
-		    com.pulsebeat02.main.gui.application.payment.Payment paymentFinal = new com.pulsebeat02.main.gui.application.payment.Payment(
+		    com.pulsebeat02.shoeraffleservice.application.application.payment.Payment paymentFinal = new com.pulsebeat02.shoeraffleservice.application.application.payment.Payment(
 			    "Bought Raffle Tickets", DateTimeFormatter.ofPattern("yyy/MM/dd").format(localDate),
 			    "Bought " + amountofTickets + " ticket(s)", "Bought with Paypal", price, null, true,
 			    account);

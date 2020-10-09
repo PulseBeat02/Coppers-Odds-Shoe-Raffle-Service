@@ -1,4 +1,4 @@
-package com.pulsebeat02.main.gui.application;
+package com.pulsebeat02.shoeraffleservice.application;
 
 import java.awt.FlowLayout;
 
@@ -13,9 +13,9 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionListener;
 
-import com.pulsebeat02.main.gui.application.account.Account;
-import com.pulsebeat02.main.gui.application.thread.ManageThreads;
-import com.pulsebeat02.main.gui.application.thread.MusicThread;
+import com.pulsebeat02.shoeraffleservice.application.application.account.Account;
+import com.pulsebeat02.shoeraffleservice.application.application.thread.ManageThreads;
+import com.pulsebeat02.shoeraffleservice.application.application.thread.MusicThread;
 
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.MouseAdapter;
