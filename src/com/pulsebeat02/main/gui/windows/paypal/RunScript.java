@@ -13,45 +13,33 @@ import javax.script.ScriptException;
 
 public class RunScript {
 
-	public static boolean checkApproval() {
-		ScriptEngineManager manager = new ScriptEngineManager();
-		ScriptEngine engine = manager.getEngineByExtension("php");
+    public boolean checkApproval() throws IOException, ScriptException {
 
-		try {
+	ScriptEngineManager manager = new ScriptEngineManager();
+	ScriptEngine engine = manager.getEngineByExtension("php");
 
-			File phpScript = new File("paymentStatus.php");
-			String path = phpScript.getAbsolutePath();
+	File phpScript = new File("paymentStatus.php");
+	String path = phpScript.getAbsolutePath();
 
-			String script = readFile(path, StandardCharsets.UTF_8);
+	String script = readFile(path, StandardCharsets.UTF_8);
 
-			String output = (String) engine.eval(script);
-			
-			if (output.equals("Completed")) {
-				
-				return true;
-				
-			}
-			
-			else {
-				
-				return false;
-				
-			}
+	String output = (String) engine.eval(script);
 
-		} catch (ScriptException e) {
-			System.err.println(e);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return false;
-		
+	if (output.equals("Completed")) {
+
+	    return true;
+
+	} else {
+
+	    return false;
+
 	}
 
-	static String readFile(String path, Charset encoding) throws IOException {
-		byte[] encoded = Files.readAllBytes(Paths.get(path));
-		return new String(encoded, encoding);
-	}
+    }
+
+    public String readFile(String path, Charset encoding) throws IOException {
+	byte[] encoded = Files.readAllBytes(Paths.get(path));
+	return new String(encoded, encoding);
+    }
 
 }

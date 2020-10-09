@@ -22,28 +22,17 @@ public class Shoe {
 	public String style;
 	public String typeOfShoes;
 	public String brand;
+	public String description;
 
 	public String[] imageURLs;
-
-	// public Image[] images;
-
-	public String description;
 	public String[] colors;
 	public String[] sizes;
 
 	public boolean isSold;
 
-	public Shoe(int shoePrice, int shipping, int tax, int subtotal, double review,
-
-			int totalRaffles,
-
-			String shoeName, String style, String typeOfShoes, String brand,
-
-			String[] imageURLs,
-
-			String description, String[] colors, String[] sizes,
-
-			boolean isSold) {
+	public Shoe(int shoePrice, int shipping, int tax, int subtotal, double review, int totalRaffles, String shoeName,
+			String style, String typeOfShoes, String brand, String[] imageURLs, String description, String[] colors,
+			String[] sizes, boolean isSold) {
 
 		this.shoePrice = shoePrice;
 		this.shipping = shipping;
@@ -55,8 +44,6 @@ public class Shoe {
 		this.shoeName = shoeName;
 		this.style = style;
 		this.typeOfShoes = typeOfShoes;
-
-		// this.images = imagesFinal;
 		this.description = description;
 		this.colors = colors;
 		this.isSold = isSold;
@@ -74,58 +61,23 @@ public class Shoe {
 		this.subtotal = Integer.parseInt(subTotal2);
 		this.review = Double.parseDouble(review2);
 		this.totalRaffles = Integer.parseInt(totalRaffles2);
-
 		this.shoeName = shoeName2;
 		this.style = style2;
 		this.typeOfShoes = typeOfShoes2;
 		this.brand = brand2;
-
-		// this.images = loadImage((String[]) images2.toArray());
 		this.description = description2;
 		this.colors = (String[]) color.toArray();
 		this.sizes = (String[]) sizes2.toArray();
 		this.isSold = Boolean.getBoolean(isSold2);
 
 	}
-	
-	public Shoe (Shoe s) {
-		
-		super();
-		
-	}
 
-	public static Shoe[] toArray(List<Shoe> list) {
-
-		Shoe[] shoes = new Shoe[list.size()];
-
-		for (int i = 0; i < list.size(); i++) {
-
-			shoes[i] = list.get(i);
-
-		}
-
-		return shoes;
-
-	}
-
-	public static Image[] loadImage(String[] imageURLs) {
+	public static Image[] loadImage(String[] imageURLs) throws MalformedURLException, IOException {
 
 		Image[] images = new Image[imageURLs.length];
 
 		for (int i = 0; i < imageURLs.length; i++) {
-
-			Image image = null;
-			try {
-				image = ImageIO.read(new URL(imageURLs[i]));
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			images[i] = image;
-
+			images[i] = ImageIO.read(new URL(imageURLs[i]));
 		}
 
 		return images;

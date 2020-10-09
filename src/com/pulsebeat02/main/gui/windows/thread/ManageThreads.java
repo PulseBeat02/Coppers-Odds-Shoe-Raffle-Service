@@ -3,21 +3,21 @@ package com.pulsebeat02.main.gui.windows.thread;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pulsebeat02.main.ShoeRaffleService;
 import com.pulsebeat02.main.gui.windows.BuyingTickets;
 import com.pulsebeat02.main.util.logging.Logger;
 
 public class ManageThreads {
-	
+
 	public static MusicThread musicThread;
 	public static BuyingTickets paymentThread;
 
-	public static int userSize;
-
-	public static ArrayList<List<Thread>> userThreads = new ArrayList<List<Thread>>(userSize);
-	public static ArrayList<Thread> utilityThreads = new ArrayList<Thread>();
+	public static List<List<Thread>> userThreads;
+	public static List<Thread> utilityThreads;
 
 	Thread mainThread = Thread.currentThread();
 
+	@Deprecated
 	public static void reuseThreads() {
 
 		for (int i = 0; i < userThreads.size(); i++) {
@@ -45,12 +45,17 @@ public class ManageThreads {
 
 	public static void addThread(Thread thread, int maxThreads) throws Exception { // Adds Thread to Necessary Slot
 
+		if (userThreads == null || utilityThreads == null) {
+			userThreads = new ArrayList<List<Thread>>(ShoeRaffleService.getInstance().userThreadSize);
+			utilityThreads = new ArrayList<Thread>();
+		}
+
 		int usersPerThread = (int) userThreads.size() / maxThreads; // Calculate Users Per Thread
-		
+
 		if (maxThreads <= 0) { // Check if thread is 0 or below, throw error
-			
+
 			throw new Exception("Invalid Thread Number, Thread Number Should Be Above 0");
-			
+
 		}
 
 		for (int i = 0; i < userThreads.size();) { // Check each Thread List in the ArrayList full of Thread List
@@ -62,7 +67,7 @@ public class ManageThreads {
 			}
 
 			else {
-				
+
 				if ((userThreads.get(i).size() + 1) < userThreads.size()) { // Else if Thread List is Full
 
 					i++; // Check Next List

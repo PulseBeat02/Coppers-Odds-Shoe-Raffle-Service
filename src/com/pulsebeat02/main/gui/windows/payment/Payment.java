@@ -9,83 +9,85 @@ import com.pulsebeat02.main.gui.windows.account.Account;
 
 public class Payment {
 
-	static String cwd = System.getProperty("user.dir");
+    public String paymentName;
+    public String paymentDate;
+    public String description;
+    public String otherNotes;
 
-	public String paymentName;
-	public String paymentDate;
-	public String description;
-	public String otherNotes;
+    double cost;
 
-	double cost;
+    public String id;
 
-	public String id;
+    boolean isVerified;
 
-	boolean isVerified;
+    public Account account;
 
-	public Account account;
+    public Payment(String name, String date, String description, String notes, double price, UUID id,
+	    boolean isVerified, Account account) {
 
-	public Payment(String name, String date, String description, String notes, double price, UUID id, boolean isVerified,
-			Account account) {
+	this.paymentName = name;
+	this.paymentDate = date;
+	this.description = description;
+	this.otherNotes = notes;
+	this.cost = price;
+	this.id = (id == null ? UUID.randomUUID().toString() : id.toString());
+	this.isVerified = isVerified;
+	this.account = account;
 
-		this.paymentName = name;
-		this.paymentDate = date;
-		this.description = description;
-		this.otherNotes = notes;
-		this.cost = price;
+    }
 
-		if (id != null)
-			this.id = id.toString();
-		else {
-			this.id = UUID.randomUUID().toString();
-		}
+    public static String toStringText(Payment payment) {
 
-		this.isVerified = isVerified;
-		this.account = account;
+	StringBuilder sb = new StringBuilder();
+	sb.append("paymentName=" + payment.paymentName);
+	sb.append("\n");
+	sb.append("paymentDate=" + payment.paymentDate);
+	sb.append("\n");
+	sb.append("description=" + payment.description);
+	sb.append("\n");
+	sb.append("cost=" + payment.cost);
+	sb.append("\n");
+	sb.append("isVerified=" + payment.isVerified);
+	sb.append("\n");
+	sb.append("payment=" + payment.id);
+	sb.append("\n");
+	sb.append("otherNotes=" + payment.otherNotes);
+	sb.append("\n");
+	sb.append("accountID=" + payment.account.accountID);
 
-	}
+	return sb.toString();
 
-	public static String toStringText(Payment payment) {
+    }
 
-		String text = payment.paymentName + "," + payment.paymentDate + "," + payment.description + "," + payment.cost
-				+ "," + payment.isVerified + "," + payment.id + "," + payment.otherNotes + ","
-				+ payment.account.accountID;
+    public static void printToFile(String payment) throws IOException {
 
-		return text;
+	BufferedWriter writer = new BufferedWriter(
+		new FileWriter(System.getProperty("user.dir") + "/allPayments", true));
+	writer.newLine();
+	writer.write(payment);
+	writer.close();
 
-	}
+    }
 
-	public static void printToFile(String payment) {
+    @Deprecated
+    public static Payment getPaymentFromStringArrayTable(String[] payment, Account account) {
 
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "/allPayments", true));
-			writer.newLine();
-			writer.write(payment);
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	String name = payment[0];
+	String date = payment[1];
+	String description = payment[2];
 
-	}
-	
-	@Deprecated
-	public static Payment getPaymentFromStringArrayTable(String[] payment, Account account) {
-		
-		String name = payment[0];
-		String date = payment[1];
-		String description = payment[2];
-		
-		int cost = Integer.parseInt(payment[3]);
-		
-		boolean isVerified = Boolean.getBoolean(payment[4]);
-		
-		String paymentID = payment[5];
-		String otherNotes = payment[6];
-		
-		Payment newPayment = new Payment(name, date, description, otherNotes, cost, UUID.fromString(paymentID), isVerified, account);
-		
-		return newPayment;
-		
-	}
+	int cost = Integer.parseInt(payment[3]);
+
+	boolean isVerified = Boolean.getBoolean(payment[4]);
+
+	String paymentID = payment[5];
+	String otherNotes = payment[6];
+
+	Payment newPayment = new Payment(name, date, description, otherNotes, cost, UUID.fromString(paymentID),
+		isVerified, account);
+
+	return newPayment;
+
+    }
 
 }

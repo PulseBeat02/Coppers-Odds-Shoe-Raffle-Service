@@ -3,7 +3,6 @@ package com.pulsebeat02.main.gui.windows.account;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +10,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -22,360 +20,275 @@ import com.pulsebeat02.main.util.logging.Logger;
 
 public class Account {
 
-	static String cwd = System.getProperty("user.dir");
-	static String OS = System.getProperty("os.name").toLowerCase();
+    public String username;
+    public String firstName;
+    public String lastName;
+    public String password;
+    public String email;
+    public String lastLogin;
+    public String accountID;
+    public String stayLoggedIn;
+    public String biography;
 
-	public String username;
-	public String firstName;
-	public String lastName;
-	public String password;
-	public String email;
-	public String lastLogin;
-	public String accountID;
-	public String stayLoggedIn;
-	public String biography;
+    public int raffleTicketsBought;
+    public int shoesWon;
 
-	public int raffleTicketsBought;
-	public int shoesWon;
+    public int[] rafflesBought;
 
-	public int[] rafflesBought;
+    public boolean isBanned;
 
-	public boolean isBanned;
+    public int accountMusic;
 
-	public int accountMusic;
-
-	public Account(String username, String firstName, String lastName, String password, String lastLogin, String email,
-			String biography, int raffleTicketsBought, int shoesWon, int[] raffesBought, boolean isBanned,
-			String stayLoggedIn, String accountID, int accountMusic) {
-
-		this.username = username;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.password = password;
-		this.email = email;
-		this.biography = biography;
-
-		if (accountID != null)
-			this.accountID = accountID;
-		else {
-
-			this.accountID = UUID.randomUUID().toString();
-
-		}
-		this.raffleTicketsBought = raffleTicketsBought;
-		this.shoesWon = shoesWon;
-		this.rafflesBought = raffesBought;
-		this.lastLogin = lastLogin;
-		this.isBanned = isBanned;
-		this.stayLoggedIn = stayLoggedIn;
-		this.accountMusic = accountMusic;
-
-		Logger.LOG.info("New Account Made");
-
-	}
-
-	public static String toStringText(Account account) {
-
-		// TODO Auto-generated method stub
-
-		String text = account.username + "," + account.firstName + "," + account.lastName + "," + account.password + ","
-				+ account.lastLogin + "," + account.email + "," + account.raffleTicketsBought + "," + account.shoesWon
-				+ "," + account.rafflesBought[0] + " " + account.rafflesBought[1] + " " + account.rafflesBought[2] + ","
-				+ account.isBanned + "," + account.stayLoggedIn + "," + account.accountID + "," + account.biography
-				+ "," + account.accountMusic;
-
-		Logger.LOG.info("Made New Account: " + text);
-
-		return text;
-
-	}
-
-	@SuppressWarnings("static-access")
-	public static void findAccount(String accountText) {
-
-		String[] seperatedText = accountText.split(",");
-
-		for (int i = 0; i < ManageAccounts.allAccounts.size(); i++) {
-			
-			Account key = (Account) ManageAccounts.allAccounts.values().toArray()[i];
-
-			if (key.accountID.equals(seperatedText[11])) {
-
-				Logger.LOG.info("Got Account: " + key.accountID);
-
-				Account account = key;
-
-				Logger.LOG.info("Starting Main Window");
-
-				StartingWindow.account = account;
-
-				account.stayLoggedIn = getMotherboardSN();
-
-				String cwd = System.getProperty("user.dir");
-
-				PrintWriter writer = null;
-				try {
-					writer = new PrintWriter(cwd + "/lastLogin", "UTF-8");
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				writer.println(Account.getMotherboardSN());
-				writer.close();
-				
-				System.out.println("PrintWriter finished");
-				
-				System.out.println("==========================================");
-				System.out.println("DIAGNOSTIC INFORMATION FOR COPPERS ODDS");
-				System.out.println("==========================================");
-				System.out.println("Account Information for Debugging:");
-				System.out.println("Account ID: " + account.accountID);
-				System.out.println("Account Username: " + account.username);
-				System.out.println("Account First Name: " + account.firstName);
-				System.out.println("Account Last Name: " + account.lastName);
-				System.out.println("Account Biography: " + account.biography);
-				System.out.println("Account Email: " + account.email);
-				System.out.println("Account Music: " + account.accountMusic);
-				System.out.println("Account Password: " + account.password);
-				System.out.println("Account Tickets Bought: " + account.raffleTicketsBought);
-				System.out.println("Account Shoes Won: " + account.shoesWon);
-				System.out.println("Account Stay Logged In (T/F): " + account.stayLoggedIn);
-				System.out.println("==========================================");
-
-				// StartingWindow.frmShoeRafflePrize = frame;
-				
-				LoginPanel.loadingFrame.setVisible(false);
-				LoginPanel.loadingFrame.dispose();
-
-				StartingWindow window = new StartingWindow(account);
-				window.frmShoeRafflePrize.setVisible(true);
-				
-				LoginPanel.frmLogin.setVisible(false);
-				LoginPanel.frmLogin.dispose();
-				
-				Logger.LOG.info("Closing Login Window");
-				
-				System.out.println("Window Loaded In");
-				
-
-			}
-
-		}
-
-	}
+    public Account(String username, String firstName, String lastName, String password, String lastLogin, String email,
+	    String biography, int raffleTicketsBought, int shoesWon, int[] raffesBought, boolean isBanned,
+	    String stayLoggedIn, String accountID, int accountMusic) {
 	
-	public static String getMotherboardSN() {
+	this.username = username;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.password = password;
+	this.email = email;
+	this.biography = biography;
+	this.accountID = accountID == null ? UUID.randomUUID().toString() : accountID;
+	this.raffleTicketsBought = raffleTicketsBought;
+	this.shoesWon = shoesWon;
+	this.rafflesBought = raffesBought;
+	this.lastLogin = lastLogin;
+	this.isBanned = isBanned;
+	this.stayLoggedIn = stayLoggedIn;
+	this.accountMusic = accountMusic;
 
-		if (isWindows()) { // Gets Motherboard ID and returns it as a String
+	Logger.LOG.info("Account made with UUID " + "[" + this.accountID + "]");
 
-			String result = "";
-			try {
-				File file = File.createTempFile("realhowto", ".vbs");
-				file.deleteOnExit();
-				FileWriter fw = new java.io.FileWriter(file);
+    }
 
-				String vbs = "Set objWMIService = GetObject(\"winmgmts:\\\\.\\root\\cimv2\")\n"
-						+ "Set colItems = objWMIService.ExecQuery _ \n" + "   (\"Select * from Win32_BaseBoard\") \n"
-						+ "For Each objItem in colItems \n" + "    Wscript.Echo objItem.SerialNumber \n"
-						+ "    exit for  ' do the first cpu only! \n" + "Next \n";
+    public static String toStringText(Account account) {
 
-				fw.write(vbs);
-				fw.close();
-				Process p = Runtime.getRuntime().exec("cscript //NoLogo " + file.getPath());
-				BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				String line;
-				while ((line = input.readLine()) != null) {
-					result += line;
-				}
-				input.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return result.trim();
+	StringBuilder sb = new StringBuilder();
+	sb.append("username=" + account.username);
+	sb.append("\n");
+	sb.append("firstname=" + account.firstName);
+	sb.append("\n");
+	sb.append("lastname=" + account.lastName);
+	sb.append("\n");
+	sb.append("password=" + account.password);
+	sb.append("\n");
+	sb.append("lastLogin=" + account.lastLogin);
+	sb.append("\n");
+	sb.append("email=" + account.email);
+	sb.append("\n");
+	sb.append("raffleTicketsBought=" + account.raffleTicketsBought);
+	sb.append("\n");
+	sb.append("rafflesBought[0]=" + account.rafflesBought[0]);
+	sb.append("\n");
+	sb.append("rafflesBought[1]=" + account.rafflesBought[1]);
+	sb.append("\n");
+	sb.append("rafflesBought[2]=" + account.rafflesBought[2]);
+	sb.append("\n");
+	sb.append("isBanned=" + account.isBanned);
+	sb.append("\n");
+	sb.append("stayLoggedIn=" + account.stayLoggedIn);
+	sb.append("\n");
+	sb.append("accountID=" + account.accountID);
+	sb.append("\n");
+	sb.append("biography=" + account.biography);
+	sb.append("\n");
+	sb.append("accountMusic=" + account.accountMusic);
+	sb.append("\n");
 
-		}
+	return sb.toString();
 
-		if (isMac()) { // Gets Serial Number and returns it as a String
+    }
 
-			String sn = null;
+    public static void findAccount(String accountText) throws IOException {
 
-			OutputStream os = null;
-			InputStream is = null;
+	String[] seperatedText = accountText.split(",");
 
-			Runtime runtime = Runtime.getRuntime();
-			Process process = null;
-			try {
-				process = runtime.exec(new String[] { "/usr/sbin/system_profiler", "SPHardwareDataType" });
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
+	for (Account acc : ManageAccounts.allAccounts.values()) {
 
-			os = process.getOutputStream();
-			is = process.getInputStream();
+	    if (acc.accountID.equals(seperatedText[11])) {
 
-			try {
-				os.close();
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
+		System.out.println("==========================================");
+		System.out.println("DIAGNOSTIC INFORMATION FOR COPPERS ODDS");
+		System.out.println("==========================================");
+		System.out.println("Account Information for Debugging:");
+		System.out.println("Account ID: " + acc.accountID);
+		System.out.println("Account Username: " + acc.username);
+		System.out.println("Account First Name: " + acc.firstName);
+		System.out.println("Account Last Name: " + acc.lastName);
+		System.out.println("Account Biography: " + acc.biography);
+		System.out.println("Account Email: " + acc.email);
+		System.out.println("Account Music: " + acc.accountMusic);
+		System.out.println("Account Password: " + acc.password);
+		System.out.println("Account Tickets Bought: " + acc.raffleTicketsBought);
+		System.out.println("Account Shoes Won: " + acc.shoesWon);
+		System.out.println("Account Stay Logged In (T/F): " + acc.stayLoggedIn);
+		System.out.println("==========================================");
 
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			String line = null;
-			String marker = "Serial Number";
-			try {
-				while ((line = br.readLine()) != null) {
-					if (line.contains(marker)) {
-						sn = line.split(":")[1].trim();
-						break;
-					}
-				}
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			} finally {
-				try {
-					is.close();
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			}
+		acc.stayLoggedIn = getMotherboardSN();
 
-			if (sn == null) {
-				throw new RuntimeException("Cannot find computer SN");
-			}
+		PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/lastLogin", "UTF-8");
+		writer.println(Account.getMotherboardSN());
+		writer.close();
 
-			return sn;
+		LoginPanel.loadingFrame.setVisible(false);
+		LoginPanel.loadingFrame.dispose();
 
-		}
+		StartingWindow window = new StartingWindow(acc);
+		window.frmShoeRafflePrize.setVisible(true);
 
-		if (isUnix()) { // Gets ID using "cat /sys/class/dmi/id/product_uuid" and returns it as a String
-
-			try {
-				ProcessBuilder builder = new ProcessBuilder("cat /sys/class/dmi/id/product_uuid");
-				builder.redirectErrorStream(true);
-				Process process = builder.start();
-				InputStream is = process.getInputStream();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-				String ID = reader.readLine();
-				return ID;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-
-		return OS;
+	    }
 
 	}
 
-	public static void printToFile(String accountString) {
+    }
 
-		try {
-			Scanner scanner = new Scanner(new File(cwd + "/loginUsers"));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "/loginUsers", true));
+    public static String getMotherboardSN() throws IOException {
 
-			if (scanner.hasNext() && (scanner.nextLine() != null || !scanner.nextLine().isEmpty())) {
+	if (isWindows()) {
 
-				writer.newLine();
+	    String result = "";
+	    String vbs = "Set objWMIService = GetObject(\"winmgmts:\\\\.\\root\\cimv2\")\n"
+		    + "Set colItems = objWMIService.ExecQuery _ \n" + "   (\"Select * from Win32_BaseBoard\") \n"
+		    + "For Each objItem in colItems \n" + "    Wscript.Echo objItem.SerialNumber \n"
+		    + "    exit for  ' do the first cpu only! \n" + "Next \n";
 
-			}
+	    File file = File.createTempFile("realhowto", ".vbs");
+	    file.deleteOnExit();
 
-			else {
+	    FileWriter fw = new java.io.FileWriter(file);
+	    fw.write(vbs);
+	    fw.close();
 
-				writer.write(accountString);
+	    Process p = Runtime.getRuntime().exec("cscript //NoLogo " + file.getPath());
+	    BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-			}
+	    String line;
+	    while ((line = input.readLine()) != null) {
+		result += line;
+	    }
+	    input.close();
 
-			scanner.close();
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	    return result.trim();
+
+	}
+
+	if (isMac()) {
+
+	    Runtime runtime = Runtime.getRuntime();
+	    Process process = runtime.exec(new String[] { "/usr/sbin/system_profiler", "SPHardwareDataType" });
+
+	    OutputStream os = process.getOutputStream();
+	    InputStream is = process.getInputStream();
+
+	    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+	    
+	    String sn = null;
+	    String line = null;
+	    String marker = "Serial Number";
+	    while ((line = br.readLine()) != null) {
+		if (line.contains(marker)) {
+		    sn = line.split(":")[1].trim();
+		    break;
 		}
+	    }
+
+	    if (sn == null) {
+		throw new RuntimeException("Cannot find computer SN");
+	    }
+	    
+	    os.close();
+	    
+	    return sn;
 
 	}
 
-	public static Account getAccountFromID(String ID) {
+	if (isUnix()) {
 
-		Refresh.reloadAccounts();
+	    ProcessBuilder builder = new ProcessBuilder("cat /sys/class/dmi/id/product_uuid");
+	    builder.redirectErrorStream(true);
+	    
+	    Process process = builder.start();
+	    InputStream is = process.getInputStream();
+	    
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+	    String ID = reader.readLine();
 
-		for (int i = 0; i < ManageAccounts.allAccounts.size(); i++) {
-			
-			Account key = (Account) ManageAccounts.allAccounts.values().toArray()[i];
-
-			if (key.accountID.equals(ID)) {
-
-				return key;
-
-			}
-
-		}
-		return null;
-
+	    return ID;
+	    
 	}
 
-	public static boolean isWindows() {
+	return System.getProperty("os.name").toLowerCase();
 
-		return (OS.indexOf("win") >= 0);
+    }
 
+    public static void printToFile(String accountString) throws IOException {
+
+	Scanner scanner = new Scanner(new File(System.getProperty("user.dir") + "/loginUsers"));
+	BufferedWriter writer = new BufferedWriter(
+		new FileWriter(System.getProperty("user.dir") + "/loginUsers", true));
+
+	if (scanner.hasNext() && (scanner.nextLine() != null || !scanner.nextLine().isEmpty())) {
+	    writer.newLine();
+	} else {
+	    writer.write(accountString);
 	}
 
-	public static boolean isMac() {
+	scanner.close();
+	writer.close();
 
-		return (OS.indexOf("mac") >= 0);
+    }
 
+    public static Account getAccountFromID(String ID) throws IOException {
+
+	Refresh.reloadAccounts();
+
+	for (Account acc : ManageAccounts.allAccounts.values()) {
+	    if (acc.accountID.equals(ID)) {
+		return acc;
+	    }
 	}
 
-	public static boolean isUnix() {
+	return null;
 
-		return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0);
+    }
 
-	}
+    public static boolean isWindows() {
+	return (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0);
+    }
 
-	public static boolean checkAccountDuplicate(String username, String email) {
-		String line = null;
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File(cwd + "/loginUsers")));
-			try {
-				while ((line = reader.readLine()) != null) {
+    public static boolean isMac() {
+	return (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0);
+    }
 
-					if (line.split(",")[0].equals(username)) {
+    public static boolean isUnix() {
+	return (System.getProperty("os.name").toLowerCase().indexOf("nix") >= 0
+		|| System.getProperty("os.name").toLowerCase().indexOf("nux") >= 0
+		|| System.getProperty("os.name").toLowerCase().indexOf("aix") > 0);
+    }
 
-						reader.close();
-						return true;
+    public static boolean checkAccountDuplicate(String username, String email) throws IOException {
 
-					}
+	BufferedReader reader = new BufferedReader(
+		new FileReader(new File(System.getProperty("user.dir") + "/loginUsers")));
 
-					else if (line.split(",")[0].equals(username)) {
-
-						reader.close();
-						return true;
-
-					}
-
-					else {
-
-						reader.close();
-						return false;
-
-					}
-
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	String line = null;
+	while ((line = reader.readLine()) != null) {
+	    if (line.split(",")[0].equals(username)) {
+		reader.close();
+		return true;
+	    } else if (line.split(",")[0].equals(username)) {
+		reader.close();
+		return true;
+	    } else {
+		reader.close();
 		return false;
-
+	    }
 	}
+	reader.close();
+
+	return false;
+
+    }
 
 }

@@ -6,24 +6,18 @@ import com.pulsebeat02.main.gui.windows.session.ManageSessions;
 
 public class SuspicousLogin extends Thread {
 
-	static ArrayList<Location> locations = new ArrayList<Location>();
-	
-	@Override
-	public void run() {
+    public ArrayList<Location> locations = new ArrayList<Location>();
 
-		for (;;) {
-
-			ManageSessions.check();
-
-			try {
-				Thread.sleep(900000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-
+    @Override
+    public void run() {
+	for (;;) {
+	    ManageSessions.check();
+	    try {
+		Thread.sleep(900000);
+	    } catch (InterruptedException e) {
+		e.printStackTrace();
+	    }
 	}
+    }
 
 }

@@ -27,6 +27,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.border.EtchedBorder;
 
+import com.pulsebeat02.main.ShoeRaffleService;
 import com.pulsebeat02.main.gui.windows.account.Account;
 import com.pulsebeat02.main.gui.windows.account.ManageAccounts;
 import com.pulsebeat02.main.gui.windows.password.PasswordWindow;
@@ -60,543 +61,466 @@ import java.awt.event.KeyEvent;
 
 public class LoginPanel {
 
-	static JLabel incorrect;
+    public static JLabel incorrect;
 
-	public static JFrame frmLogin;
-	private static JTextField usernameField;
-	private static JPasswordField passwordField;
+    public static JFrame frmLogin;
+    
+    public static JTextField usernameField;
+    public static JPasswordField passwordField;
 
-	static Account loggedInAccount;
+    public static Account loggedInAccount;
 
-	public static int maxThreads;
+    public static boolean keepLogin;
 
-	public static boolean keepLogin;
-	
-	public static Loading loadingFrame = new Loading();
+    public static Loading loadingFrame = new Loading();
 
-	/**
-	 * Launch the application.
-	 */
+    public void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException,
+	    IllegalAccessException, UnsupportedLookAndFeelException {
+	start(true);
+    }
 
-	public static void main(String[] args) {
+    public void start(boolean makeNew) throws IOException, ClassNotFoundException, InstantiationException,
+	    IllegalAccessException, UnsupportedLookAndFeelException {
 
-		start(true);
+	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
+	if (!makeNew) {
+	    initialize();
+	} else if (makeNew) {
+	    LoginPanel frame = new LoginPanel();
+	    frame.getFrame().setVisible(true);
 	}
 
-	@SuppressWarnings("static-access")
-	public static void start(boolean makeNew) {
+    }
 
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		} catch (InstantiationException ex) {
-			ex.printStackTrace();
-		} catch (IllegalAccessException ex) {
-			ex.printStackTrace();
-		} catch (UnsupportedLookAndFeelException ex) {
-			ex.printStackTrace();
-		}
-		
-		if (!makeNew) {
-		
-			initialize();
-		
-		} else if (makeNew) {
-			
-			LoginPanel frame = new LoginPanel();
-			frame.frmLogin.setVisible(true);
-			
-		}
+    public LoginPanel() throws IOException {
+	initialize();
+    }
+    
+    public JFrame getFrame() {
+	return LoginPanel.frmLogin;
+    }
 
-	}
+    private static void initialize() throws IOException {
 
-	/**
-	 * Create the application.
-	 * @wbp.parser.entryPoint
-	 */
-	public LoginPanel() {
-		initialize();
-	}
+	ManageAccounts.start();
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private static void initialize() {
+	frmLogin = new JFrame();
+	frmLogin.setBounds(100, 100, 585, 380);
+	frmLogin.setResizable(false);
+	frmLogin.getContentPane().setBackground(new Color(180, 180, 180));
+	frmLogin.getContentPane().setForeground(Color.WHITE);
+	frmLogin.setTitle("Login");
+	frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(
+		AccountCreated.class.getResource("/com/pulsebeat02/main/resources/images/mainmenu/copporsOdds.png")));
+	frmLogin.setUndecorated(true);
+	frmLogin.getContentPane().setLayout(null);
 
-		ManageAccounts.start();
+	FrameDragListener frameDragListener = new FrameDragListener(frmLogin);
+	frmLogin.addMouseListener(frameDragListener);
+	frmLogin.addMouseMotionListener(frameDragListener);
 
-		// SplashScreenLoading.isLoaded = true;
+	JLabel lblNewLabel = new JLabel("Coppers Odds");
+	lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	lblNewLabel.setForeground(Color.WHITE);
+	lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 25));
+	lblNewLabel.setBounds(252, 11, 309, 73);
+	frmLogin.getContentPane().add(lblNewLabel);
 
-		Logger.LOG.info("Opening Login Panel");
+	JPanel panel = new JPanel();
+	panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+	panel.setForeground(Color.WHITE);
+	panel.setBackground(new Color(180, 180, 180));
+	panel.setBounds(252, 88, 309, 265);
+	frmLogin.getContentPane().add(panel);
+	panel.setLayout(null);
 
-		frmLogin = new JFrame();
-		frmLogin.setBounds(100, 100, 585, 380);
-		frmLogin.setResizable(false);
-		frmLogin.getContentPane().setBackground(new Color(180, 180, 180));
-		frmLogin.getContentPane().setForeground(Color.WHITE);
-		frmLogin.setTitle("Login");
-		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(
-				AccountCreated.class.getResource("/com/pulsebeat02/main/resources/images/mainmenu/copporsOdds.png")));
-		frmLogin.setUndecorated(true);
-		frmLogin.getContentPane().setLayout(null);
+	JLabel lblUserLogin = new JLabel("User Login");
+	lblUserLogin.setHorizontalAlignment(SwingConstants.CENTER);
+	lblUserLogin.setBounds(6, 11, 297, 32);
+	lblUserLogin.setIcon(new ImageIcon(
+		LoginPanel.class.getResource("/com/pulsebeat02/main/resources/images/login/userLogin.png")));
+	panel.add(lblUserLogin);
+	lblUserLogin.setForeground(Color.WHITE);
+	lblUserLogin.setFont(new Font("Segoe UI", Font.BOLD, 15));
 
-		Logger.LOG.info("Window Loaded In");
+	JLabel lblNewLabel_2 = new JLabel("");
+	lblNewLabel_2.setForeground(Color.WHITE);
+	lblNewLabel_2.setIcon(
+		new ImageIcon(LoginPanel.class.getResource("/com/pulsebeat02/main/resources/images/login/user.png")));
+	lblNewLabel_2.setBounds(10, 57, 37, 32);
+	panel.add(lblNewLabel_2);
 
-		FrameDragListener frameDragListener = new FrameDragListener(frmLogin);
-		frmLogin.addMouseListener(frameDragListener);
-		frmLogin.addMouseMotionListener(frameDragListener);
-
-		assert frmLogin.isVisible();
-
-//		if (motherBoardID().equals(Account.getMotherboardSN())) {
-//
-//			for (int i = 0; i < ManageAccounts.allAccounts.size(); i++) {
-//
-//				if (ManageAccounts.allAccounts.get(i).stayLoggedIn.equals(motherBoardID())) {
-//
-//					StartingWindow.account = ManageAccounts.allAccounts.get(i);
-//					StartingWindow.main(null);
-//
-//					Logger.LOG.info("Opening Starting Window, Saved Account");
-//
-//					frmLogin.setVisible(false);
-//					frmLogin.dispose();
-//
-//					Thread.currentThread().interrupt();
-//
-//				}
-//
-//			}
-//
-//		}
-
-		JLabel lblNewLabel = new JLabel("Coppers Odds");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		lblNewLabel.setBounds(252, 11, 309, 73);
-		frmLogin.getContentPane().add(lblNewLabel);
-
-		JPanel panel = new JPanel();
-		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setForeground(Color.WHITE);
-		panel.setBackground(new Color(180, 180, 180));
-		panel.setBounds(252, 88, 309, 265);
-		frmLogin.getContentPane().add(panel);
-		panel.setLayout(null);
-
-		JLabel lblUserLogin = new JLabel("User Login");
-		lblUserLogin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUserLogin.setBounds(6, 11, 297, 32);
-		lblUserLogin.setIcon(new ImageIcon(
-				LoginPanel.class.getResource("/com/pulsebeat02/main/resources/images/login/userLogin.png")));
-		panel.add(lblUserLogin);
-		lblUserLogin.setForeground(Color.WHITE);
-		lblUserLogin.setFont(new Font("Segoe UI", Font.BOLD, 15));
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setIcon(
-				new ImageIcon(LoginPanel.class.getResource("/com/pulsebeat02/main/resources/images/login/user.png")));
-		lblNewLabel_2.setBounds(10, 57, 37, 32);
-		panel.add(lblNewLabel_2);
-
-		usernameField = new JTextField();
-		usernameField.setToolTipText("Enter Username Here");
-		usernameField.setForeground(Color.BLACK);
-		usernameField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				incorrect.setVisible(false);
-			}
-		});
-		usernameField.setBounds(57, 63, 242, 20);
-		panel.add(usernameField);
-		usernameField.setColumns(10);
-
-		JLabel label = new JLabel("");
-		label.setIcon(
-				new ImageIcon(LoginPanel.class.getResource("/com/pulsebeat02/main/resources/images/login/lock.png")));
-		label.setForeground(Color.WHITE);
-		label.setBounds(10, 113, 37, 32);
-		panel.add(label);
-
-		incorrect = new JLabel("Username or Password Incorrect");
+	usernameField = new JTextField();
+	usernameField.setToolTipText("Enter Username Here");
+	usernameField.setForeground(Color.BLACK);
+	usernameField.addKeyListener(new KeyAdapter() {
+	    @Override
+	    public void keyTyped(KeyEvent e) {
 		incorrect.setVisible(false);
-		incorrect.setFont(new Font("Dialog", Font.BOLD, 10));
-		incorrect.setForeground(Color.RED);
-		incorrect.setBackground(Color.RED);
-		incorrect.setBounds(115, 198, 192, 14);
-		panel.add(incorrect);
-
-		passwordField = new JPasswordField();
-		passwordField.setForeground(Color.BLACK);
-		passwordField.setToolTipText("Enter Password Here");
-		passwordField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-				}
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				incorrect.setVisible(false);
-			}
-		});
-		passwordField.setBounds(57, 120, 242, 20);
-		panel.add(passwordField);
-
-		JButton Login = new JButton("Login");
-		Login.addMouseListener(new MouseAdapter() {
-
-			String accountLine = "";
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-				loadingFrame.setVisible(true);
-				
-				frmLogin.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				frmLogin.setEnabled(false);
-
-				boolean isLogin = false;
-
-				List<String> lines = null;
-
-				String cwd = System.getProperty("user.dir");
-
-				try {
-					lines = Files.readAllLines(Paths.get(cwd + "/loginUsers"), StandardCharsets.UTF_8);
-					Logger.LOG.info("Reading Login File");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					Logger.LOG.info("Login File Not Found");
-					e.printStackTrace();
-				} // Optimize This
-
-				for (int i = 0; i < lines.size(); i++) {
-
-					String[] currentLine = lines.get(i).split(",");
-
-					if (currentLine[0].equals(usernameField.getText())
-							&& currentLine[3].equals(new String(passwordField.getPassword()))) {
-
-						isLogin = true;
-
-						Logger.LOG.info("Login Successful");
-
-						accountLine = lines.get(i);
-
-						ManageAccounts.read();
-
-						Logger.LOG.info("Logged In");
-
-						Account.findAccount(accountLine);
-
-						Thread loginThread = new Thread(() -> {
-							Session session = new Session(new Location(), loggedInAccount);
-							ManageSessions.allSessions.put(session.location.IP, session);
-						});
-
-						loginThread.start();
-
-						try {
-							ManageThreads.addThread(loginThread, maxThreads);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							System.exit(0);
-						}
-
-						SuspicousLogin login = new SuspicousLogin();
-						login.start();
-
-						break;
-
-					}
-
-					else {
-
-						isLogin = false;
-						Logger.LOG.info("Didn't Find Login... Trying Again");
-						
-						
-
-					}
-
-				}
-
-				if (!isLogin) {
-					
-					incorrect.setVisible(true);
-					loadingFrame.setVisible(false);
-					
-					isLogin = false;
-					
-					Logger.LOG.info("Login Not Found");
-
-				}
-				
-				frmLogin.setCursor(Cursor.getDefaultCursor());
-
-			}
-
-		});
-		Login.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		Login.setForeground(Color.GRAY);
-		Login.setBackground(Color.LIGHT_GRAY);
-		Login.setBounds(10, 218, 76, 32);
-		panel.add(Login);
-
-		JCheckBox keepMeLoggedIn = new JCheckBox("Keep Me Logged In", false);
-		keepMeLoggedIn.setOpaque(false);
-		keepMeLoggedIn.setToolTipText("Disabled due to Deprecation");
-		keepMeLoggedIn.setBackground(Color.LIGHT_GRAY);
-		keepMeLoggedIn.setForeground(SystemColor.window);
-		keepMeLoggedIn.setBounds(10, 163, 289, 23);
-		keepMeLoggedIn.setEnabled(false);
-		panel.add(keepMeLoggedIn);
-		keepMeLoggedIn.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-
-					keepLogin = true;
-					Logger.LOG.info("User Keeping Login");
-
-				} else {
-
-					keepLogin = false;
-					Logger.LOG.info("User Not Keeping Login");
-
-					String cwd = System.getProperty("user.dir");
-					try {
-						PrintWriter writer = new PrintWriter(cwd + "/lastLogin");
-						writer.write("");
-						writer.write("0");
-						writer.close();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
-				}
-
-			}
-
-		});
-
-		JButton Close = new JButton("Close");
-		Close.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Logger.LOG.info("Closing Window");
-				frmLogin.setVisible(false); // you can't see me!
-				frmLogin.dispose(); // Destroy the JFrame object
-			}
-		});
-		Close.setForeground(Color.GRAY);
-		Close.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		Close.setBackground(Color.LIGHT_GRAY);
-		Close.setBounds(223, 218, 76, 32);
-		panel.add(Close);
-
-		JLabel lblWelcome = new JLabel("Welcome!");
-		lblWelcome.setVisible(false);
-		lblWelcome.setForeground(SystemColor.window);
-		lblWelcome.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblWelcome.setBounds(13, 193, 279, 14);
-		panel.add(lblWelcome);
-
-		JButton btnRegister = new JButton("Register");
-		btnRegister.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				frmLogin.setVisible(false);
-				frmLogin.dispose();
-				RegisterPanel.main(null);
-			}
-		});
-		btnRegister.setForeground(Color.GRAY);
-		btnRegister.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		btnRegister.setBackground(new Color(180, 180, 180));
-		btnRegister.setBounds(107, 218, 95, 32);
-		panel.add(btnRegister);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setForeground(SystemColor.window);
-		panel_1.setBackground(new Color(180, 180, 180));
-		panel_1.setBounds(8, 11, 567, 358);
-		frmLogin.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-
-		JLabel LoginImage = new JLabel("");
-		LoginImage.setBounds(10, 114, 184, 173);
-		panel_1.add(LoginImage);
-		LoginImage.setHorizontalAlignment(SwingConstants.CENTER);
-		ImageIcon imageIcon = new ImageIcon(
-				LoginPanel.class.getResource("/com/pulsebeat02/main/resources/images/login/login.png")); // load the
-																											// image to
-																											// a
-																											// imageIcon
-		Image image = imageIcon.getImage(); // transform it
-		Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-		imageIcon = new ImageIcon(newimg); // transform it back
-		LoginImage.setIcon(imageIcon);
-
-		JLabel lblUserPortal = new JLabel("User Portal");
-		lblUserPortal.setBounds(24, 71, 189, 52);
-		panel_1.add(lblUserPortal);
-		lblUserPortal.setForeground(SystemColor.window);
-		lblUserPortal.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUserPortal.setFont(new Font("Segoe UI", Font.BOLD, 30));
-
-		JLabel lblNewLabel_1 = new JLabel("Reset Password");
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblNewLabel_1.setText("<HTML><U>Reset Password</U></HTML>");
-				label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblNewLabel_1.setText("Reset Password");
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ResetGUI.main(null);
-			}
-		});
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(15, 333, 203, 14);
-		panel_1.add(lblNewLabel_1);
-
-		BackgroundMenuBar menuBar = new BackgroundMenuBar();
-		menuBar.setBounds(10, 11, 180, 15);
-		panel_1.add(menuBar);
-		menuBar.setBackground(new Color(180, 180, 180));
-		menuBar.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
-		menuBar.setBorderPainted(false);
-		menuBar.setForeground(Color.DARK_GRAY);
-		menuBar.setColor(new Color(180, 180, 180));
-
-		JMenu admin = new JMenu("Administrator");
-		admin.setForeground(new Color(180, 180, 180));
-		admin.setBackground(new Color(180, 180, 180));
-		JMenu window = new JMenu("Window");
-		window.setBackground(new Color(180, 180, 180));
-		window.setForeground(new Color(180, 180, 180));
-
-		menuBar.add(admin);
-		menuBar.add(window);
-
-		JMenuItem menuItem1 = new JMenuItem("Enter Password", KeyEvent.VK_T);
-		menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		admin.add(menuItem1);
-		menuItem1.addActionListener(new ActionListener() {
-
-			@Override
-
-			public void actionPerformed(ActionEvent e) {
-
-				Logger.LOG.info("Opening JMenu");
-				String[] args = null;
-				PasswordWindow.main(args);
-
-			}
-
-		});
-
-		JMenuItem menuItem2 = new JMenuItem("Quit", KeyEvent.VK_T);
-		menuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
-		window.add(menuItem2);
-		menuItem2.addActionListener(new ActionListener() {
-
-			@Override
-
-			public void actionPerformed(ActionEvent e) {
-
-				Logger.LOG.info("Quitting");
-				frmLogin.setVisible(false);
-				frmLogin.dispose();
-				Logger.LOG.info("Closing Window");
-
-			}
-
-		});
-
-		frmLogin.setVisible(true);
-		
-		ManageThreads.musicThread = new MusicThread();
-
-	}
-
-	public static class FrameDragListener extends MouseAdapter {
-
-		private final JFrame frame;
-		private Point mouseDownCompCoords = null;
-
-		public FrameDragListener(JFrame frame) {
-			this.frame = frame;
+	    }
+	});
+	usernameField.setBounds(57, 63, 242, 20);
+	panel.add(usernameField);
+	usernameField.setColumns(10);
+
+	JLabel label = new JLabel("");
+	label.setIcon(
+		new ImageIcon(LoginPanel.class.getResource("/com/pulsebeat02/main/resources/images/login/lock.png")));
+	label.setForeground(Color.WHITE);
+	label.setBounds(10, 113, 37, 32);
+	panel.add(label);
+
+	incorrect = new JLabel("Username or Password Incorrect");
+	incorrect.setVisible(false);
+	incorrect.setFont(new Font("Dialog", Font.BOLD, 10));
+	incorrect.setForeground(Color.RED);
+	incorrect.setBackground(Color.RED);
+	incorrect.setBounds(115, 198, 192, 14);
+	panel.add(incorrect);
+
+	passwordField = new JPasswordField();
+	passwordField.setForeground(Color.BLACK);
+	passwordField.setToolTipText("Enter Password Here");
+	passwordField.addKeyListener(new KeyAdapter() {
+	    @Override
+	    public void keyPressed(KeyEvent arg0) {
+		if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 		}
+	    }
 
-		public void mouseReleased(MouseEvent e) {
-			mouseDownCompCoords = null;
-		}
+	    @Override
+	    public void keyTyped(KeyEvent e) {
+		incorrect.setVisible(false);
+	    }
+	});
+	passwordField.setBounds(57, 120, 242, 20);
+	panel.add(passwordField);
 
-		public void mousePressed(MouseEvent e) {
-			mouseDownCompCoords = e.getPoint();
-		}
+	JButton Login = new JButton("Login");
+	Login.addMouseListener(new MouseAdapter() {
 
-		public void mouseDragged(MouseEvent e) {
-			Point currCoords = e.getLocationOnScreen();
-			frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
-		}
-	}
+	    String accountLine = "";
 
-	public static class BackgroundMenuBar extends JMenuBar {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		Color bgColor = Color.WHITE;
+	    @Override
+	    public void mouseClicked(MouseEvent arg0) {
 
-		public void setColor(Color color) {
-			bgColor = color;
-		}
+		loadingFrame.setVisible(true);
 
-		@Override
-		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			Graphics2D g2d = (Graphics2D) g;
-			g2d.setColor(bgColor);
-			g2d.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
+		frmLogin.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		frmLogin.setEnabled(false);
 
-		}
-	}
+		boolean isLogin = false;
 
-	// cwd + "/lastLogin"
-
-	public static String motherBoardID() {
+		List<String> lines = null;
 
 		String cwd = System.getProperty("user.dir");
-		List<String> lines = null;
+
 		try {
-			lines = Files.readAllLines(Paths.get(cwd + "/lastLogin"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    lines = Files.readAllLines(Paths.get(cwd + "/loginUsers"), StandardCharsets.UTF_8);
+		} catch (IOException e2) {
+		    e2.printStackTrace();
 		}
 
-		return lines.get(0);
+		for (int i = 0; i < lines.size(); i++) {
+
+		    String[] currentLine = lines.get(i).split(",");
+
+		    if (currentLine[0].equals(usernameField.getText())
+			    && currentLine[3].equals(new String(passwordField.getPassword()))) {
+
+			isLogin = true;
+
+			Logger.LOG.info("Login Successful");
+
+			accountLine = lines.get(i);
+
+			try {
+			    ManageAccounts.read();
+			} catch (IOException e1) {
+			    e1.printStackTrace();
+			}
+
+			Logger.LOG.info("Logged In");
+
+			try {
+			    Account.findAccount(accountLine);
+			} catch (IOException e1) {
+			    // TODO Auto-generated catch block
+			    e1.printStackTrace();
+			}
+
+			Thread loginThread = new Thread(() -> {
+			    Session session = new Session(new Location(), loggedInAccount);
+			    ManageSessions.allSessions.put(session.location.IP, session);
+			});
+
+			loginThread.start();
+
+			try {
+			    ManageThreads.addThread(loginThread, ShoeRaffleService.getInstance().cpuThreads);
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    System.exit(0);
+			}
+
+			SuspicousLogin login = new SuspicousLogin();
+			login.start();
+
+			break;
+
+		    }
+
+		    else {
+
+			isLogin = false;
+			Logger.LOG.info("Didn't Find Login... Trying Again");
+
+		    }
+
+		}
+
+		if (!isLogin) {
+
+		    incorrect.setVisible(true);
+		    loadingFrame.setVisible(false);
+
+		    isLogin = false;
+
+		    Logger.LOG.info("Login Not Found");
+
+		}
+
+		frmLogin.setCursor(Cursor.getDefaultCursor());
+
+	    }
+
+	});
+	Login.setFont(new Font("Segoe UI", Font.BOLD, 15));
+	Login.setForeground(Color.GRAY);
+	Login.setBackground(Color.LIGHT_GRAY);
+	Login.setBounds(10, 218, 76, 32);
+	panel.add(Login);
+
+	JCheckBox keepMeLoggedIn = new JCheckBox("Keep Me Logged In", false);
+	keepMeLoggedIn.setOpaque(false);
+	keepMeLoggedIn.setToolTipText("Disabled due to Deprecation");
+	keepMeLoggedIn.setBackground(Color.LIGHT_GRAY);
+	keepMeLoggedIn.setForeground(SystemColor.window);
+	keepMeLoggedIn.setBounds(10, 163, 289, 23);
+	keepMeLoggedIn.setEnabled(false);
+	panel.add(keepMeLoggedIn);
+	keepMeLoggedIn.addItemListener(new ItemListener() {
+	    @Override
+	    public void itemStateChanged(ItemEvent e) {
+
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+
+		    keepLogin = true;
+		    Logger.LOG.info("User Keeping Login");
+
+		} else {
+
+		    keepLogin = false;
+		    Logger.LOG.info("User Not Keeping Login");
+
+		    String cwd = System.getProperty("user.dir");
+		    try {
+			PrintWriter writer = new PrintWriter(cwd + "/lastLogin");
+			writer.write("");
+			writer.write("0");
+			writer.close();
+		    } catch (IOException e1) {
+			e1.printStackTrace();
+		    }
+
+		}
+
+	    }
+
+	});
+
+	JButton Close = new JButton("Close");
+	Close.addMouseListener(new MouseAdapter() {
+	    @Override
+	    public void mouseClicked(MouseEvent e) {
+		Logger.LOG.info("Closing Window");
+		frmLogin.setVisible(false); // you can't see me!
+		frmLogin.dispose(); // Destroy the JFrame object
+	    }
+	});
+	Close.setForeground(Color.GRAY);
+	Close.setFont(new Font("Segoe UI", Font.BOLD, 15));
+	Close.setBackground(Color.LIGHT_GRAY);
+	Close.setBounds(223, 218, 76, 32);
+	panel.add(Close);
+
+	JLabel lblWelcome = new JLabel("Welcome!");
+	lblWelcome.setVisible(false);
+	lblWelcome.setForeground(SystemColor.window);
+	lblWelcome.setFont(new Font("Segoe UI", Font.BOLD, 15));
+	lblWelcome.setBounds(13, 193, 279, 14);
+	panel.add(lblWelcome);
+
+	JButton btnRegister = new JButton("Register");
+	btnRegister.addMouseListener(new MouseAdapter() {
+	    @Override
+	    public void mouseClicked(MouseEvent arg0) {
+		frmLogin.setVisible(false);
+		frmLogin.dispose();
+		RegisterPanel.main(null);
+	    }
+	});
+	btnRegister.setForeground(Color.GRAY);
+	btnRegister.setFont(new Font("Segoe UI", Font.BOLD, 15));
+	btnRegister.setBackground(new Color(180, 180, 180));
+	btnRegister.setBounds(107, 218, 95, 32);
+	panel.add(btnRegister);
+
+	JPanel panel_1 = new JPanel();
+	panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+	panel_1.setForeground(SystemColor.window);
+	panel_1.setBackground(new Color(180, 180, 180));
+	panel_1.setBounds(8, 11, 567, 358);
+	frmLogin.getContentPane().add(panel_1);
+	panel_1.setLayout(null);
+
+	JLabel LoginImage = new JLabel("");
+	LoginImage.setBounds(10, 114, 184, 173);
+	panel_1.add(LoginImage);
+	LoginImage.setHorizontalAlignment(SwingConstants.CENTER);
+
+	ImageIcon imageIcon = new ImageIcon(
+		LoginPanel.class.getResource("/com/pulsebeat02/main/resources/images/login/login.png"));
+	Image image = imageIcon.getImage();
+	Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+	imageIcon = new ImageIcon(newimg);
+	LoginImage.setIcon(imageIcon);
+
+	JLabel lblUserPortal = new JLabel("User Portal");
+	lblUserPortal.setBounds(24, 71, 189, 52);
+	panel_1.add(lblUserPortal);
+	lblUserPortal.setForeground(SystemColor.window);
+	lblUserPortal.setHorizontalAlignment(SwingConstants.CENTER);
+	lblUserPortal.setFont(new Font("Segoe UI", Font.BOLD, 30));
+
+	JLabel lblNewLabel_1 = new JLabel("Reset Password");
+	lblNewLabel_1.addMouseListener(new MouseAdapter() {
+	    @Override
+	    public void mouseEntered(MouseEvent arg0) {
+		lblNewLabel_1.setText("<HTML><U>Reset Password</U></HTML>");
+		label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	    }
+
+	    @Override
+	    public void mouseExited(MouseEvent e) {
+		lblNewLabel_1.setText("Reset Password");
+	    }
+
+	    @Override
+	    public void mouseClicked(MouseEvent e) {
+		ResetGUI.main(null);
+	    }
+	});
+	lblNewLabel_1.setForeground(Color.WHITE);
+	lblNewLabel_1.setBounds(15, 333, 203, 14);
+	panel_1.add(lblNewLabel_1);
+
+	BackgroundMenuBar menuBar = new BackgroundMenuBar();
+	menuBar.setBounds(10, 11, 180, 15);
+	panel_1.add(menuBar);
+	menuBar.setBackground(new Color(180, 180, 180));
+	menuBar.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
+	menuBar.setBorderPainted(false);
+	menuBar.setForeground(Color.DARK_GRAY);
+	menuBar.setColor(new Color(180, 180, 180));
+
+	JMenu admin = new JMenu("Administrator");
+	admin.setForeground(new Color(180, 180, 180));
+	admin.setBackground(new Color(180, 180, 180));
+	JMenu window = new JMenu("Window");
+	window.setBackground(new Color(180, 180, 180));
+	window.setForeground(new Color(180, 180, 180));
+
+	menuBar.add(admin);
+	menuBar.add(window);
+
+	JMenuItem menuItem1 = new JMenuItem("Enter Password", KeyEvent.VK_T);
+	menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+	admin.add(menuItem1);
+	menuItem1.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		new PasswordWindow();
+	    }
+	});
+
+	JMenuItem menuItem2 = new JMenuItem("Quit", KeyEvent.VK_T);
+	menuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+	window.add(menuItem2);
+	menuItem2.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		Logger.LOG.info("Quitting");
+		frmLogin.setVisible(false);
+		frmLogin.dispose();
+		Logger.LOG.info("Closing Window");
+	    }
+	});
+
+	frmLogin.setVisible(true);
+	ManageThreads.musicThread = new MusicThread();
+
+    }
+
+    public static class FrameDragListener extends MouseAdapter {
+
+	private final JFrame frame;
+	private Point mouseDownCompCoords = null;
+
+	public FrameDragListener(JFrame frame) {
+	    this.frame = frame;
+	}
+
+	public void mouseReleased(MouseEvent e) {
+	    mouseDownCompCoords = null;
+	}
+
+	public void mousePressed(MouseEvent e) {
+	    mouseDownCompCoords = e.getPoint();
+	}
+
+	public void mouseDragged(MouseEvent e) {
+	    Point currCoords = e.getLocationOnScreen();
+	    frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+	}
+
+    }
+
+    public static class BackgroundMenuBar extends JMenuBar {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	Color bgColor = Color.WHITE;
+
+	public void setColor(Color color) {
+	    bgColor = color;
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+	    super.paintComponent(g);
+	    Graphics2D g2d = (Graphics2D) g;
+	    g2d.setColor(bgColor);
+	    g2d.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
 
 	}
+    }
+
+    public static String motherBoardID() throws IOException {
+	return Files.readAllLines(Paths.get(System.getProperty("user.dir") + "/lastLogin")).get(0);
+    }
 }

@@ -8,32 +8,22 @@ import com.pulsebeat02.main.util.logging.Logger;
 
 public class PasswordConfig {
 
-	static Properties prop;
+    static Properties prop;
 
-	public static void start() {
-		// TODO Auto-generated method stub
+    public static void start() {
 
-		prop = new Properties();
+	prop = new Properties();
 
-		try {
-			// set the properties value
-			
-			Logger.LOG.info("Loading Password Properties");
-			
-			prop.setProperty("time", "10000");
-			prop.setProperty("PasswordEnabled", "mtrue");
-
-			// save properties to project root folder
-
-			prop.store(new FileOutputStream("config.properties"), null);
-
-		} catch (IOException ex) {
-			
-			Logger.LOG.info("File not found");
-			ex.printStackTrace();
-
-		}
-
+	try {
+	    Logger.LOG.info("Loading Password Properties");
+	    prop.setProperty("time", "10000");
+	    prop.setProperty("PasswordEnabled", "mtrue");
+	    prop.store(new FileOutputStream("config.properties"), null);
+	} catch (IOException ex) {
+	    Logger.LOG.info("File not found");
+	    ex.printStackTrace();
 	}
+
+    }
 
 }

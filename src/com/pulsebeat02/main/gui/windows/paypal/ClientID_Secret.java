@@ -1,6 +1,5 @@
 package com.pulsebeat02.main.gui.windows.paypal;
 
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -9,44 +8,20 @@ import java.util.List;
 
 public class ClientID_Secret {
 
-	static String cwd = System.getProperty("user.dir");
+    public String getClientID() throws IOException {
 
-	public static String getClientID() {
+	List<String> lines = Files.readAllLines(Paths.get(System.getProperty("user.dir") + "/Paypal-ClientID-Secret"),
+		StandardCharsets.UTF_8);
+	return lines.get(0).substring(10, lines.get(0).length());
 
-		try {
-			List<String> lines = Files.readAllLines(Paths.get(cwd + "/Paypal-ClientID-Secret"), StandardCharsets.UTF_8);
-			return lines.get(0).substring(10, lines.get(0).length());
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IndexOutOfBoundsException e1) {
-			
-			return "empty";
-			
-		}
-		
-		return null;
+    }
 
-	}
+    public String getSecret() throws IOException {
 
-	public static String getSecret() {
-		
-		try {
-			List<String> lines = Files.readAllLines(Paths.get(cwd + "/Paypal-ClientID-Secret"), StandardCharsets.UTF_8);
-			return lines.get(1).substring(7, lines.get(1).length());
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IndexOutOfBoundsException e1) {
-			
-			return "empty";
-			
-		}
-		
-		return null;
+	List<String> lines = Files.readAllLines(Paths.get(System.getProperty("user.dir") + "/Paypal-ClientID-Secret"),
+		StandardCharsets.UTF_8);
+	return lines.get(1).substring(7, lines.get(1).length());
 
-	}
+    }
 
 }

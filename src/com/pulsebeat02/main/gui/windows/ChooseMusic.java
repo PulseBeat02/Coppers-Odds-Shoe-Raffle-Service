@@ -62,7 +62,7 @@ public class ChooseMusic extends JDialog implements Runnable {
 		listModel.add(2, "Dreamy");
 		listModel.add(3, "Sad");
 		listModel.add(4, "Uplifting");
-		listModel.add(5, "Choose From Files:");
+		listModel.add(5, "Choose From Files (Must be MP3 File)");
 		listModel.add(6, "Turn Off Background Music");
 
 		{

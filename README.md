@@ -31,7 +31,7 @@ This project uses a variety of dependencies. I will list all of them here:
 ~~Unfortuantly, I wasn't able to upload any song files onto github, so you won't be able to listen or choose music, as it will throw an IOException. If you want to play around with the code, I will upload a release that contains the .mp3 to check if it is working or not. Thanks.~~ Edit: I was able to fix this by using git lfs here: https://git-lfs.github.com/ Now, you should be able to just download the repository. 
 
 ## How to Run this Application
-Download the repository as a zip file, then import it into eclipse. The main class is ShoeRaffleService.java, so click the run button when you are in that class.
+Download the repository as a zip file, then import it into eclipse. The main class is Coppers_Odds.java, so click the run button when you are in that class.
 ## Branches
 
 I have two branches. Master, and dev (development). I use Master to push updates, and I use dev for development. I suggest for people who are doing code checks to use the dev branch, as it contains the latest updated code.
@@ -42,5 +42,3 @@ If you are here for code check, thank you, and I hope my code looks ok. Make pul
 
 - Paypal Payments Have Issues. Links for redirect, return, etc won't work. Issue opened [here](https://github.com/paypal/PayPal-Java-SDK/issues/387).
 - Null Pointer Exception because of problems having to do with getting the value/key of an element in a ConcurrentHashMap. This problem is happening to Sessions, Accounts, and Payments.
-
-- Thank you hchen for doing a code check

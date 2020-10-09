@@ -8,26 +8,21 @@ import java.nio.file.StandardOpenOption;
 
 public class NoMultipleInstances {
 
-	static String userHome = System.getProperty("user.home");
-
-	public static void main(boolean generate) {
-
+	public static void check(boolean generate) throws IOException {
+		
+		String userHome = System.getProperty("user.home");
+		
 		if (generate) {
 
 			File file = new File(userHome, ".lock");
-			try {
-				FileChannel fc = FileChannel.open(file.toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-				FileLock lock = fc.tryLock();
-				if (lock == null) {
-					Runtime.getRuntime().exit(0);
-				}
-			} catch (IOException e) {
-				throw new Error(e);
+			FileChannel fc = FileChannel.open(file.toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+			FileLock lock = fc.tryLock();
+			
+			if (lock == null) {
+				Runtime.getRuntime().exit(0);
 			}
 
-		}
-
-		else {
+		} else {
 
 			new File(userHome + ".lock").delete();
 

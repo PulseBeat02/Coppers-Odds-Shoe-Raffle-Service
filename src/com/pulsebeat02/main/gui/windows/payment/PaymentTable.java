@@ -1,7 +1,5 @@
 package com.pulsebeat02.main.gui.windows.payment;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -19,187 +17,126 @@ import com.pulsebeat02.main.util.logging.Logger;
 
 import java.awt.Cursor;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 public class PaymentTable {
 
-	public static Account account;
+    public static Account account;
+    public PaymentTable() throws IOException {
 
-	JFrame f;
-	JTable j;
+	ManageAccounts.read();
+	
+	JFrame f = new JFrame();
+	f.setTitle("Payments");
+	f.setIconImage(Toolkit.getDefaultToolkit().getImage(
+		PaymentTable.class.getResource("/com/pulsebeat02/main/resources/images/mainmenu/dollarbill.png")));
 
-	// Constructor
-	public PaymentTable() {
+	ArrayList<String[]> data = new ArrayList<String[]>();
+	for (int i = 0; i < getPayments(account).length; i++) {
+	    Payment currentPayment = getPayments(account)[i];
+	    String name = currentPayment.paymentName;
+	    String date = currentPayment.paymentDate;
+	    String description = currentPayment.description;
+	    String cost = String.valueOf(currentPayment.cost);
+	    String verified = String.valueOf(currentPayment.isVerified);
+	    String ID = currentPayment.id.toString();
+	    String notes = currentPayment.otherNotes;
+	    String[] payment = { name, date, description, cost, verified, ID, notes };
+	    data.add(payment);
+	}
 
-		ManageAccounts.read();
+	String[] columnNames = { "Payment Name", "Date of Payment", "Description", "Cost", "Verified?", "Payment ID",
+		"Other Notes" };
 
-		f = new JFrame();
-		f.setIconImage(Toolkit.getDefaultToolkit().getImage(
-				PaymentTable.class.getResource("/com/pulsebeat02/main/resources/images/mainmenu/dollarbill.png")));
+	String[][] finalData = new String[data.size()][6];
+	finalData = data.toArray(finalData);
 
-		// Frame Title
-		f.setTitle("Payments");
+	JTable j = new JTable(finalData, columnNames);
+	j.setBounds(30, 40, 200, 300);
+	j.setEnabled(false);
 
-		// Data to be displayed in the JTable
+	JScrollPane sp = new JScrollPane(j);
+	f.getContentPane().add(sp);
+	f.setSize(750, 550);
+	f.setVisible(true);
 
-		ArrayList<String[]> data = new ArrayList<String[]>();
+	StartingWindow.frmShoeRafflePrize.setEnabled(true);
+	StartingWindow.frmShoeRafflePrize.setCursor(Cursor.getDefaultCursor());
 
-		for (int i = 0; i < getPayments(account).length; i++) {
-
-			Payment currentPayment = getPayments(account)[i];
-
-			String name = currentPayment.paymentName;
-			String date = currentPayment.paymentDate;
-			String description = currentPayment.description;
-			String cost = String.valueOf(currentPayment.cost);
-			String verified = String.valueOf(currentPayment.isVerified);
-			String ID = currentPayment.id.toString();
-			String notes = currentPayment.otherNotes;
-
-			String[] payment = { name, date, description, cost, verified, ID, notes };
-
-			data.add(payment);
-
+	Runtime.getRuntime().addShutdownHook(new Thread() {
+	    @Override
+	    public void run() {
+		Logger.LOG.info("Shutting Down");
+		try {
+		    ManagePayments.save();
+		} catch (IOException e) {
+		    e.printStackTrace();
 		}
+	    }
 
-		// Column Names
-		String[] columnNames = { "Payment Name", "Date of Payment", "Description", "Cost", "Verified?", "Payment ID",
-				"Other Notes" };
+	});
 
-		// Initializing the JTable
+    }
 
-		String[][] finalData = new String[data.size()][6];
-		finalData = data.toArray(finalData);
+    public static void start() throws IOException {
 
-		j = new JTable(finalData, columnNames);
-		j.setBounds(30, 40, 200, 300);
-		j.setEnabled(false);
+	new PaymentTable();
 
-		// adding it to JScrollPane
-		JScrollPane sp = new JScrollPane(j);
-		f.getContentPane().add(sp);
-		// Frame Size
-		f.setSize(750, 550);
-		// Frame Visible = true
-		f.setVisible(true);
-		
-		StartingWindow.frmShoeRafflePrize.setEnabled(true);
-		StartingWindow.frmShoeRafflePrize.setCursor(Cursor.getDefaultCursor());
+    }
 
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			@Override
-			public void run() {
-				Logger.LOG.info("Shutting Down");
-				ManagePayments.save();
-			}
+    public static Payment[] getPayments(Account account) throws IOException {
 
-		});
+	ManagePayments.read();
+
+	ArrayList<Payment> payments = new ArrayList<Payment>();
+	Payment[] allPayments = getPayments();
+	for (int i = 0; i < allPayments.length; i++) {
+	    Payment key = allPayments[i];
+	    if ((key.account.accountID).equals(account.accountID) && key != null) {
+		payments.add(key);
+	    } else {
+		Logger.LOG.error("Warning, Account is Null");
+		Payment[] dummy = new Payment[0];
+		dummy[0] = key;
+		return dummy;
+	    }
+	}
+
+	return payments.stream().toArray(Payment[]::new);
+
+    }
+
+    public static Payment[] getPayments() {
+
+	Set<Entry<String, Payment>> set = ManagePayments.allPayments.entrySet();
+
+	Payment[] payments = new Payment[set.size()];
+
+	for (int i = 0; i < payments.length; i++) {
+
+	    payments[i] = Payment.class.cast(getValue(set, i));
 
 	}
 
-	public static void start() {
+	return payments;
 
-		new PaymentTable();
+    }
 
+    public static Object getValue(Set<Entry<String, Payment>> set, int index) {
+
+	Iterator<Entry<String, Payment>> it = set.iterator();
+
+	int target = 0;
+	while (it.hasNext()) {
+	    target++;
+	    if (target == index) {
+		Map.Entry<String, Payment> entry = (Map.Entry<String, Payment>) it.next();
+		return entry.getValue();
+	    }
 	}
 
-	public static Payment[] getPayments(Account account) {
+	return null;
 
-		ManagePayments.read();
-
-		ArrayList<Payment> payments = new ArrayList<Payment>();
-
-		Payment[] allPayments = getPayments();
-
-		for (int i = 0; i < allPayments.length; i++) {
-
-			Payment key = allPayments[i];
-			
-			System.out.println(key.account);
-
-			if ((key.account.accountID).equals(account.accountID) && key != null) {
-
-				payments.add(key);
-
-			}
-
-			else {
-
-				Logger.LOG.error("Warning, Account is Null");
-
-				Payment[] dummy = new Payment[0];
-
-				dummy[0] = key;
-
-				return dummy;
-
-			}
-
-		}
-
-		return payments.stream().toArray(Payment[]::new);
-
-	}
-
-	static int binarySearch(ArrayList<String> arr, String x) {
-		int l = 0, r = arr.size() - 1;
-		while (l <= r) {
-			int m = l + (r - l) / 2;
-
-			int res = x.compareTo(arr.get(m));
-
-			// Check if x is present at mid
-			if (res == 0)
-				return m;
-
-			// If x greater, ignore left half
-			if (res > 0)
-				l = m + 1;
-
-			// If x is smaller, ignore right half
-			else
-				r = m - 1;
-		}
-
-		return -1;
-	}
-
-	public static Payment[] getPayments() {
-
-		Set<Entry<String, Payment>> set = ManagePayments.allPayments.entrySet();
-
-		Payment[] payments = new Payment[set.size()];
-
-		for (int i = 0; i < payments.length; i++) {
-
-			payments[i] = Payment.class.cast(getValue(set, i));
-
-		}
-
-		return payments;
-
-	}
-
-	public static Object getValue(Set<Entry<String, Payment>> set, int index) {
-
-		Iterator<Entry<String, Payment>> it = set.iterator();
-
-		int target = 0;
-
-		while (it.hasNext()) {
-
-			target++;
-
-			if (target == index) {
-
-				Map.Entry<String, Payment> entry = (Map.Entry<String, Payment>) it.next();
-				return entry.getValue();
-
-			}
-
-		}
-		
-		return null;
-
-	}
+    }
 
 }

@@ -9,7 +9,7 @@ public class Refresh {
 
 	static String cwd = System.getProperty("user.dir");
 
-	public static void start(String identifier) {
+	public static void start(String identifier) throws IOException {
 
 		if (identifier.equals("account")) {
 
@@ -25,7 +25,7 @@ public class Refresh {
 
 	}
 
-	public static void reloadAccounts() {
+	public static void reloadAccounts() throws IOException {
 
 		ManageAccounts.duplicateLineDeletion();
 		ManageAccounts.blankLineDeletion();
@@ -40,7 +40,7 @@ public class Refresh {
 
 	}
 
-	public static void reloadPayments() {
+	public static void reloadPayments() throws IOException {
 		
 		// ArrayUtilities.getRidOfNull(ManagePayments.allPayments);
 		ManagePayments.save();

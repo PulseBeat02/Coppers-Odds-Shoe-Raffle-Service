@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JSeparator;
 
-import com.pulsebeat02.main.Main;
+import com.pulsebeat02.main.ShoeRaffleService;
 import com.pulsebeat02.main.util.logging.Logger;
 
 import javax.swing.JButton;
@@ -138,7 +138,7 @@ public class NoConnection extends JDialog {
 		final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
 		File currentJar = null;
 		try {
-			currentJar = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+			currentJar = new File(ShoeRaffleService.class.getProtectionDomain().getCodeSource().getLocation().toURI());
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
