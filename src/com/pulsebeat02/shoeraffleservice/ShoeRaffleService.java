@@ -1,5 +1,6 @@
 package com.pulsebeat02.shoeraffleservice;
 
+import java.awt.Toolkit;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -7,19 +8,19 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.swing.UnsupportedLookAndFeelException;
-
 import com.pulsebeat02.shoeraffleservice.application.NoConnection;
-import com.pulsebeat02.shoeraffleservice.application.application.login.LoginPanel;
-import com.pulsebeat02.shoeraffleservice.application.application.payment.ManagePayments;
-import com.pulsebeat02.shoeraffleservice.application.application.session.ClearSessions;
+import com.pulsebeat02.shoeraffleservice.application.session.ClearSessions;
 import com.pulsebeat02.shoeraffleservice.util.JSON.ReadJSON;
 import com.pulsebeat02.shoeraffleservice.util.logging.Logger;
 
 public class ShoeRaffleService {
-
-    static ShoeRaffleService INSTANCE;
-
+    
+    public static ShoeRaffleService service;
+    public static ShoeRaffleService getInstance() {
+	return service;
+    }
+    
+    public static InstanceManager instance;
     public boolean isConnected;
 
     public boolean generate;
@@ -29,7 +30,10 @@ public class ShoeRaffleService {
     public int userThreadSize;
 
     public ShoeRaffleService(String[] args) throws IOException {
-
+	
+	ShoeRaffleService.service = this;
+	ShoeRaffleService.instance = new InstanceManager();
+	
 	try {
 	    switch (args.length) {
 
@@ -86,7 +90,7 @@ public class ShoeRaffleService {
 	} catch (IllegalArgumentException e) {
 	    e.printStackTrace();
 	}
-
+	
 	ClearSessions clearsession = new ClearSessions();
 	clearsession.start();
 
@@ -104,25 +108,19 @@ public class ShoeRaffleService {
 	Logger.LOG.info("Program Loading");
 
 	Logger.main(null);
-
-	ManagePayments.read();
+	
+	ShoeRaffleService.service.getInstanceManager().MANAGE_PAYMENTS.read();
 
 	if (isConnected()) {
 
-	    try {
-		LoginPanel.start(true);
-	    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-		    | UnsupportedLookAndFeelException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
+	    ShoeRaffleService.service.getInstanceManager().LOGIN_PANEL.start(true);
 
 	    Logger.LOG.info("User Kept Login");
 	    Logger.LOG.info("Network Connection Stable");
 
 	} else {
 
-	    NoConnection.start();
+	    ShoeRaffleService.service.getInstanceManager().NO_CONNECTION = new NoConnection();
 	    this.isConnected = false;
 	    Logger.LOG.warn("No network connection detected, showing NoConnection GUI");
 
@@ -139,12 +137,18 @@ public class ShoeRaffleService {
     }
 
     public static void main(String[] args) throws IOException {
-	INSTANCE = new ShoeRaffleService(args);
+	if (Toolkit.getDefaultToolkit().getImage(ShoeRaffleService.class
+		.getResource("/com/pulsebeat02/shoeraffleservice/resources/images/mainmenu/copporsOdds.png")) == null) {
+	    System.out.println(true);
+	}
+	System.out.println(false);
+	new ShoeRaffleService(args);
+    }
+    
+    public InstanceManager getInstanceManager() {
+	return ShoeRaffleService.service.instance;
     }
 
-    public static ShoeRaffleService getInstance() {
-	return INSTANCE;
-    }
 
     public static boolean isConnected() {
 	try {

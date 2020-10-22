@@ -1,5 +1,81 @@
 package com.pulsebeat02.shoeraffleservice;
 
-public class InstanceManager {
+import com.pulsebeat02.shoeraffleservice.application.AboutUs;
+import com.pulsebeat02.shoeraffleservice.application.BuyingRaffleTickets;
+import com.pulsebeat02.shoeraffleservice.application.BuyingTickets;
+import com.pulsebeat02.shoeraffleservice.application.ChooseMusic;
+import com.pulsebeat02.shoeraffleservice.application.ChooseShoe;
+import com.pulsebeat02.shoeraffleservice.application.CredentialsLoaded;
+import com.pulsebeat02.shoeraffleservice.application.MenuMusic;
+import com.pulsebeat02.shoeraffleservice.application.NoConnection;
+import com.pulsebeat02.shoeraffleservice.application.PaymentExpired;
+import com.pulsebeat02.shoeraffleservice.application.Refresh;
+import com.pulsebeat02.shoeraffleservice.application.ShoeMenu;
+import com.pulsebeat02.shoeraffleservice.application.StartingWindow;
+import com.pulsebeat02.shoeraffleservice.application.exception.ExceptionHandling;
+import com.pulsebeat02.shoeraffleservice.application.login.Loading;
+import com.pulsebeat02.shoeraffleservice.application.login.LoginPanel;
+import com.pulsebeat02.shoeraffleservice.application.password.AttemptsExceeded;
+import com.pulsebeat02.shoeraffleservice.application.password.OpenFiles;
+import com.pulsebeat02.shoeraffleservice.application.password.PasswordConfig;
+import com.pulsebeat02.shoeraffleservice.application.password.PasswordWindow;
+import com.pulsebeat02.shoeraffleservice.application.password.PasswordWrong;
+import com.pulsebeat02.shoeraffleservice.application.payment.ManagePayments;
+import com.pulsebeat02.shoeraffleservice.application.payment.PaymentTable;
+import com.pulsebeat02.shoeraffleservice.application.paypal.RunScript;
+import com.pulsebeat02.shoeraffleservice.application.privacy.InvalidAccounts;
+import com.pulsebeat02.shoeraffleservice.application.raffles.PickRandomRaffle;
+import com.pulsebeat02.shoeraffleservice.application.register.AccountCreated;
+import com.pulsebeat02.shoeraffleservice.application.register.MissingFields;
+import com.pulsebeat02.shoeraffleservice.application.register.RegisterPanel;
+import com.pulsebeat02.shoeraffleservice.application.resetPassword.ChangePassword;
+import com.pulsebeat02.shoeraffleservice.application.resetPassword.EnterCode;
+import com.pulsebeat02.shoeraffleservice.application.resetPassword.PasswordChanged;
+import com.pulsebeat02.shoeraffleservice.application.resetPassword.ResetPasscode;
+import com.pulsebeat02.shoeraffleservice.application.session.ManageSessions;
+import com.pulsebeat02.shoeraffleservice.application.settings.AccountSettings;
+import com.pulsebeat02.shoeraffleservice.application.settings.ChangeSettings;
+import com.pulsebeat02.shoeraffleservice.application.splash.LoadingScreen;
+import com.pulsebeat02.shoeraffleservice.application.thread.ManageThreads;
 
+public class InstanceManager {
+    
+    public ExceptionHandling EXCEPTION_HANDLING;
+    public Loading LOADING;
+    public LoginPanel LOGIN_PANEL = new LoginPanel();
+    public OpenFiles OPEN_FILES;
+    public PasswordConfig PASSWORD_CONFIG;
+    public PasswordWindow PASSWORD_WINDOW;
+    public PasswordWrong PASSWORD_WRONG;
+    public AttemptsExceeded ATTEMPTS_EXCEEDED;
+    public PaymentTable PAYMENT_TABLE;
+    public InvalidAccounts INVALID_ACCOUNTS;
+    public AccountCreated ACCOUNT_CREATED;
+    public MissingFields MISSING_FIELDS;
+    public RegisterPanel REGISTER_PANEL;
+    public ChangePassword CHANGE_PASSWORD;
+    public EnterCode ENTER_CODE;
+    public ResetPasscode RESET_PASSCODE;
+    public PasswordChanged PASSWORD_CHANGED;
+    public AccountSettings ACCOUNT_SETTINGS;
+    public ChangeSettings CHANGE_SETTINGS;
+    public LoadingScreen LOADING_SCREEN;
+    public AboutUs ABOUT_US;
+    public BuyingRaffleTickets BUYING_RAFFLE_TICKETS;
+    public BuyingTickets BUYING_TICKETS;
+    public ChooseMusic CHOOSE_MUSIC;
+    public ChooseShoe CHOOSE_SHOE;
+    public CredentialsLoaded CREDENTIALS_LOADED;
+    public MenuMusic MENU_MUSIC;
+    public NoConnection NO_CONNECTION;
+    public PaymentExpired PAYMENT_EXPIRED;
+    public ShoeMenu SHOE_MENU;
+    public StartingWindow STARTING_WINDOW;
+    public Refresh REFRESH = new Refresh();
+    public ManageSessions MANAGE_SESSIONS = new ManageSessions();
+    public ManageThreads MANAGE_THREADS = new ManageThreads();
+    public ManagePayments MANAGE_PAYMENTS = new ManagePayments();
+    public PickRandomRaffle PICK_RANDOM_RAFFLE = new PickRandomRaffle();
+    public RunScript RUN_SCRIPT = new RunScript();
+    
 }
